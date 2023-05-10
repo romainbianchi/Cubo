@@ -4,37 +4,40 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Refer to a position of an object insteand of using (15,2,0)
-    public GameObject platform;
+    // Refer to a position of in_cubo
+    public GameObject inCuboPos;
 
+    private static bool inCubo = false;
+    private static Vector3 deskPos;
 
-    private static bool inCube = false;
-    private static Vector3 oldPos;
+    public void TpPlayer()
+    {
+        // if the player is in the cube, teleport them to the center
+        if (!inCubo)
+        {
+            transform.position = inCuboPos.transform.position;
+            inCubo = true; 
+            
+        } else {
+            inCuboPos.transform.position = transform.position;
+            transform.position = deskPos;
+            inCubo = false;
+        }
+    }
+
 
 	void Start () 
     { 
+        // Set the initial position of the desk pos
+        deskPos = transform.position;
 
+        // Set the initial position of the in_cubo_pos
+        inCuboPos.transform.position = new Vector3(inCuboPos.transform.position.x, transform.position.y, inCuboPos.transform.position.z);
     }
 
     void Update()
     {
         
-    }
-    
-
-    public void tp_player()
-    {
-        // if the player is in the cube, teleport them to the center
-        if (!inCube)
-        {
-            oldPos = transform.position;
-            transform.position = platform.transform.position;
-            inCube = true; 
-            
-        } else {
-            transform.position = oldPos;
-            inCube = false;
-        }
-    }
+    } 
 
 }
