@@ -12,12 +12,10 @@ public class ControllerGrabber : Grabber
     public override bool HandClosing()
     {
         if (controllerType == ControllerType.LeftController) {
-            return (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) && OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) ||
-                   (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && OVRInput.Get(OVRInput.Button.PrimaryHandTrigger));
+            return (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger));
         }
         if (controllerType == ControllerType.RightController) {
-            return (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) && OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger)) ||
-                   (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger));
+            return (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger));
         }
         return false;
     }
@@ -26,12 +24,10 @@ public class ControllerGrabber : Grabber
     public override bool HandOpening()
     {
         if (controllerType == ControllerType.LeftController) {
-            return (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) ||
-                   (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && !OVRInput.Get(OVRInput.Button.PrimaryHandTrigger));
+            return (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger));
         }
         if (controllerType == ControllerType.RightController){
-            return (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) && !OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger)) ||
-                   (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && !OVRInput.Get(OVRInput.Button.SecondaryHandTrigger));
+            return (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger));
         }
         return false;
     }
