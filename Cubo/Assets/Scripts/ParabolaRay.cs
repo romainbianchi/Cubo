@@ -20,6 +20,7 @@ public class ParabolaRay : MonoBehaviour
     public float gravity = 9.81f;
     public float smooth = 0.1f;
     private int amountOfRaycastsSpawned;
+    public float rayCastEnlargorFactor = 2.0f; // facteur pour regler les pb de collisions
  
     //Ball
     private GameObject ball;
@@ -30,7 +31,7 @@ public class ParabolaRay : MonoBehaviour
         // Create a ball
         ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);   // cree la sphere
         ball.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // change la taille de la sphere
-        ball.GetComponent<Renderer>().material.color = Color.red;  // change la couleur de la sphere
+        ball.GetComponent<Renderer>().material.color = Color.green;  // change la couleur de la sphere
         Destroy(ball.GetComponent<SphereCollider>());              // enleve le collider de la sphere
         
     }
@@ -68,7 +69,7 @@ public class ParabolaRay : MonoBehaviour
             positions.Add(raycastPosition);
 
             // Si le raycast touche un objet, on arrete le raycast
-            if (Physics.Raycast(raycastPosition, raycastDirection, out hit, 2*rayCastLength))
+            if (Physics.Raycast(raycastPosition, raycastDirection, out hit, rayCastEnlargorFactor*rayCastLength))
             {
                 positions.Add(hit.point);
                 break;
