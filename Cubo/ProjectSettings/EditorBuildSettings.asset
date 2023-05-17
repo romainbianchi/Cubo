@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Button.unity
     guid: 376a63b5ccb58ad4ebd8411e67b80507
   - enabled: 1
-    path: Assets/Scenes/DeskSceneLudo.unity
+    path: Assets/Scenes/DeskSceneRomain.unity
     guid: 4afca2cf611d1454da1f33e465846297
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: eb233b19ee1d2854e893a0249b310532, type: 2}

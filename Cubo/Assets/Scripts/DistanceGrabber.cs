@@ -19,6 +19,10 @@ public class DistanceGrabber : MonoBehaviour
 
     private LineRenderer lineRenderer;
 
+    // Player
+    [Header("Player")]
+    public PlayerControllerPers playerPers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +35,9 @@ public class DistanceGrabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // State check
+        if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Grabbing || playerPers.getLeftState() == PlayerControllerPers.State.Locomotion)) return;
+        if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Grabbing || playerPers.getRightState() == PlayerControllerPers.State.Locomotion)) return;
         // At each frame, handle the controller grasp behaviour
         HandleGrabBehaviour();
     }
@@ -90,6 +97,9 @@ public class DistanceGrabber : MonoBehaviour
         // Enable the line renderer
         lineRenderer.enabled = true;
 
+        // lineRenderer length = 2
+        lineRenderer.positionCount = 2;
+
         // Set the starting and ending points of the line
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, target);
@@ -125,9 +135,17 @@ public class DistanceGrabber : MonoBehaviour
         if (Aim(out Vector3 target)){
             DisplayRay(target);
             GrabObject(target);
+            // Update state
+            if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.DistanceGrabbing);
+            if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.DistanceGrabbing);
         } else {
             lineRenderer.enabled = false;
             ReleaseObject();
+            if (grabbedObject == null){
+                // Update state
+                if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.Idle);
+                if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.Idle);
+            }
         }
     }
 
