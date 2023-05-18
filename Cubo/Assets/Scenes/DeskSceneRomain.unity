@@ -4562,7 +4562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerType: 1
   maximumTeleportationDistance: 15
-  markerPrefab: {fileID: 6529313505486457211, guid: d5f08123caf1c83438892a9f03453088, type: 3}
+  markerPrefab: {fileID: 2241463758428916479, guid: 2b99c98db70de4a10b218193a43b402f, type: 3}
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
   rayCastSpawnLimit: 200
@@ -4584,7 +4584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerType: 0
   maximumTeleportationDistance: 15
-  markerPrefab: {fileID: 6529313505486457211, guid: d5f08123caf1c83438892a9f03453088, type: 3}
+  markerPrefab: {fileID: 2241463758428916479, guid: 2b99c98db70de4a10b218193a43b402f, type: 3}
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
   rayCastSpawnLimit: 200
