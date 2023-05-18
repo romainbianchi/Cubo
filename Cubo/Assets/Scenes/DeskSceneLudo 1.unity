@@ -1480,7 +1480,7 @@ PrefabInstance:
     - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 658449032}
     - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -1503,7 +1503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TpPlayer
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3175,6 +3175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e583afeed6d25fd43ba460f1b3054b80, type: 3}
+--- !u!1 &658449032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4104006746220749799, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
+  m_PrefabInstance: {fileID: 296105957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &753334817
 GameObject:
   m_ObjectHideFlags: 0
@@ -6487,7 +6492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b27e4c7eccaf604596e4f1be0589735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inCuboPos: {fileID: 1584918400}
 --- !u!1 &1873312189
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,7 +6525,7 @@ Transform:
   - {fileID: 1584918403}
   - {fileID: 47232316}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1873312191
 MonoBehaviour:

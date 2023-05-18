@@ -6,6 +6,7 @@ public class PlayerControllerPers : MonoBehaviour
 {
     // Refer to a position of in_cubo
     public GameObject inCuboPos;
+    public GameObject inDeskPos;
 
     // States
     public enum State {Locomotion, DistanceGrabbing, Grabbing, Idle}
@@ -16,22 +17,24 @@ public class PlayerControllerPers : MonoBehaviour
     private bool left_tp_pointing = false;
     private bool right_tp_pointing = false;
 
-    private static bool inCubo = false;
-    private static Vector3 deskPos;
+    private static Vector3 deskPos = new Vector3(0, 0, 2);
 
-    public void TpPlayer()
+    public void TpPlayerInCubo()
     {
-        // if the player is in the cube, teleport them to the center
-        if (!inCubo)
-        {
-            transform.position = inCuboPos.transform.position;
-            inCubo = true; 
-            
-        } else {
-            inCuboPos.transform.position = transform.position;
-            transform.position = deskPos;
-            inCubo = false;
-        }
+        // TP the player in cubo
+        inDeskPos.transform.position = transform.position;
+        this.GetComponent<CharacterController>().enabled = false;
+        transform.position = inCuboPos.transform.position;
+        this.GetComponent<CharacterController>().enabled = true;            
+    }
+
+    public void TpPlayerInDesk()
+    {
+        // TP the player in desk
+        inCuboPos.transform.position = transform.position;
+        this.GetComponent<CharacterController>().enabled = false;
+        transform.position = inDeskPos.transform.position;
+        this.GetComponent<CharacterController>().enabled = true;
     }
 
     // Set and get Tp pointing states
