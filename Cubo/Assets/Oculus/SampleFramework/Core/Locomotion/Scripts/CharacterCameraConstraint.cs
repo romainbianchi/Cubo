@@ -1,11 +1,11 @@
-/************************************************************************************
+/****************************
 
 See SampleFramework license.txt for license terms.  Unless required by applicable law 
 or agreed to in writing, the sample code is provided “AS IS” WITHOUT WARRANTIES OR 
 CONDITIONS OF ANY KIND, either express or implied.  See the license for specific 
 language governing permissions and limitations under the license.
 
-************************************************************************************/
+****************************/
 
 using System;
 using UnityEngine;
@@ -25,7 +25,6 @@ public class CharacterCameraConstraint : MonoBehaviour
 	public OVRCameraRig CameraRig;
 
 	/// <summary>
-	/// This value represents the character capsule's distance from the HMD's position. When the player is moving in legal space without collisions, this will be zero.
 	/// </summary>
 	[Tooltip("This value represents the character capsule's distance from the HMD's position. When the player is moving in legal space without collisions, this will be zero.")]
 	public float CurrentDistance;
@@ -202,10 +201,10 @@ public class CharacterCameraConstraint : MonoBehaviour
 			}
 		}
 
-		// if (EnableFadeout)
-		// {
-		// 	float fadeLevel = Mathf.Clamp01((CurrentDistance - FadeMinDistance)/ (FadeMaxDistance - FadeMinDistance));
-		// 	OVRInspector.instance.fader.SetFadeLevel(fadeLevel * MaxFade);
-		// }
+		//if (EnableFadeout)
+		//{
+			//float fadeLevel = Mathf.Clamp01((CurrentDistance - FadeMinDistance)/ (FadeMaxDistance - FadeMinDistance));
+			//OVRInspector.instance.fader.SetFadeLevel(fadeLevel * MaxFade);
+		//}
 	}
 }

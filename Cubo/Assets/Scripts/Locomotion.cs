@@ -108,9 +108,9 @@ public class Locomotion : MonoBehaviour
                     {
                         // Tp the player
                         // character_controller.Move(target_point - this.transform.position);
-
-                        // Or tp player using transform
-                        player.transform.position = target_point;
+                        character_controller.enabled = false;
+                        character_controller.transform.position = target_point + new Vector3(0, character_controller.height/2, 0);
+                        character_controller.enabled = true;
                     }
 
                 }
@@ -159,7 +159,10 @@ public class Locomotion : MonoBehaviour
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
                         // Tp the player
-                        character_controller.Move(target_point - this.transform.position);
+                        // character_controller.Move(target_point - this.transform.position);
+                        character_controller.enabled = false;
+                        character_controller.transform.position = target_point + new Vector3(0, character_controller.height/2, 0);
+                        character_controller.enabled = true;
                     }
 
                 } 
