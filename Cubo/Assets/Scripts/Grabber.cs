@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Grabber : MonoBehaviour
-{
+public class Grabber : MonoBehaviour
+{ 
+    // Select the hand type to know wich button should be pressed
+    public enum ControllerType {LeftController, RightController}
+    public ControllerType controllerType = ControllerType.LeftController;
+
+    // Player controller
+    public PlayerControllerPers playerPers;
+
     // Store all gameobjects containing an Anchor
     // N.B. As the list of Anchors is the same between all Hand Controllers this field can
     // be made static to prevent having the same list stored in each Hand Controller instance.
@@ -19,20 +26,42 @@ public abstract class Grabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // State check
+        if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+        if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+        
         // At each frame, handle the controller grasp behaviour
         HandleGrabBehaviour();
     }
 
     // Check if the player is closing the hand
-    abstract public bool HandClosing();
-    
+    bool HandClosing()
+    {
+        if (controllerType == ControllerType.LeftController) {
+            return (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger));
+        }
+        if (controllerType == ControllerType.RightController) {
+            return (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger));
+        }
+        return false;
+    }
+
     // Check if the player is opening the hand
-    abstract public bool HandOpening();
+    bool HandOpening()
+    {
+        if (controllerType == ControllerType.LeftController) {
+            return (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger));
+        }
+        if (controllerType == ControllerType.RightController){
+            return (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger));
+        }
+        return false;
+    }
 
     // We want to save the anchor that is being grasped
     protected ObjectGrabbable grabbedObject = null;
 
-    public void HandleGrabBehaviour()
+    void HandleGrabBehaviour()
     {
         // If the hand is not closing, and not opening, then skip
         if (!HandClosing() && !HandOpening()) return;
@@ -40,6 +69,7 @@ public abstract class Grabber : MonoBehaviour
         // If the hand closes
         if (HandClosing())
         {
+
             // Determine which object available is the closest from the hand
             float minDistance = float.MaxValue;
             ObjectGrabbable closestObject = null;
@@ -66,20 +96,33 @@ public abstract class Grabber : MonoBehaviour
                 grabbedObject = closestObject;
                 // And attach the anchor to the hand
                 grabbedObject.AttachTo(this);
+
+                // Update the player state
+                if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.Grabbing);
+                if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.Grabbing);
             }
         }
 
         // If the hand opens
         else if (HandOpening())
         {
-            // If there is a grasped anchor
-            if (grabbedObject != null)
-            {
-                // Then detach the anchor from the hand
-                grabbedObject.DetachFrom(this);
-                // And set the grasped anchor to null
-                grabbedObject = null;
-            }
+            ReleaseObject();
+            
+            // Update the player state
+            if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.Idle);
+            if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.Idle);
         }
     }
+
+    void ReleaseObject(){
+        // If there is a grasped anchor
+        if (grabbedObject != null)
+        {
+            // Then detach the anchor from the hand
+            grabbedObject.DetachFrom(this);
+            // And set the grasped anchor to null
+            grabbedObject = null;
+        }
+    }
+        
 }

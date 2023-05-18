@@ -26,6 +26,9 @@ public class ObjectGrabbable : MonoBehaviour
         initialParent = transform.parent;
         available = true;
         attachedGrabber = null;
+
+        // Set the layer as "Grabbable"
+        gameObject.layer = LayerMask.NameToLayer("Grabbable");
     }
 
     // When the object is grasped: set the anchor as the child of the hand
@@ -37,11 +40,15 @@ public class ObjectGrabbable : MonoBehaviour
         // Save the hand to which the anchor is attached
         attachedGrabber = grabbedBy;
 
+        // Lift the object a little bit
+        transform.position += Vector3.up * 0.03f;
+
         // Set the parent of the anchor to the hand
         transform.SetParent(grabbedBy.transform);
 
         // Set the object as kinematic
         GetComponent<Rigidbody>().isKinematic = true;
+
     }
 
     // When the object is released: set the anchor as the child of the initial parent
@@ -61,21 +68,16 @@ public class ObjectGrabbable : MonoBehaviour
 
         // Set the parent of the anchor to the initial parent
         transform.SetParent(initialParent);
-
-        // If the grabber is a controller grabber then make the object follow the trajectory of the correct hand
-        if (grabbedBy is ControllerGrabber)
+        
+        if (grabbedBy.controllerType == Grabber.ControllerType.LeftController)
         {
-            ControllerGrabber controllerGrabber = (ControllerGrabber)grabbedBy;
-            if (controllerGrabber.controllerType == ControllerGrabber.ControllerType.LeftController)
-            {
-                GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
-                GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
-            }
-            else if (controllerGrabber.controllerType == ControllerGrabber.ControllerType.RightController)
-            {
-                GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
-                GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
-            }
+            GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
+            GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
+        }
+        else if (grabbedBy.controllerType == Grabber.ControllerType.RightController)
+        {
+            GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
+            GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
         }
         // Because thee Oculus plugin does not provide informations about
         // the speed of the hands when they are not controllers, we cannot 

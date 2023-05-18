@@ -107,7 +107,10 @@ public class Locomotion : MonoBehaviour
                     if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                     {
                         // Tp the player
-                        character_controller.Move(target_point - this.transform.position);
+                        // character_controller.Move(target_point - this.transform.position);
+
+                        // Or tp player using transform
+                        player.transform.position = target_point;
                     }
 
                 }

@@ -18,9 +18,13 @@ public class PlayerControllerPers : MonoBehaviour
 
     private static bool inCubo = false;
     private static Vector3 deskPos;
+    private bool cuboIsStable = false;
 
     public void TpPlayer()
     {
+        // If the cubo is not stable, don't tp the player
+        if (!cuboIsStable) return;
+
         // if the player is in the cube, teleport them to the center
         if (!inCubo)
         {
@@ -74,6 +78,11 @@ public class PlayerControllerPers : MonoBehaviour
     public State getLeftState()
     {
         return left_state;
+    }
+
+    public void setCuboIsStable(bool state)
+    {
+        cuboIsStable = state;
     }
 
 

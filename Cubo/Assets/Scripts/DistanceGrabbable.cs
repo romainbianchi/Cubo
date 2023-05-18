@@ -24,6 +24,9 @@ public class DistanceGrabbable : MonoBehaviour
         initialParent = transform.parent;
         available = true;
         attachedGrabber = null;
+
+        // Set the layer as "Grabbable"
+        gameObject.layer = LayerMask.NameToLayer("Grabbable");
     }
 
     // When the object is grasped: set the anchor as the child of the hand

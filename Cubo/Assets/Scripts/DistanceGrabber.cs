@@ -133,16 +133,26 @@ public class DistanceGrabber : MonoBehaviour
     void HandleGrabBehaviour()
     {
         if (Aim(out Vector3 target)){
+
+            // Display the ray
             DisplayRay(target);
-            GrabObject(target);
+
+            // Grab the object if the hand is closing
+            if (HandClosing()) GrabObject(target);
+
             // Update state
             if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.DistanceGrabbing);
             if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.DistanceGrabbing);
         } else {
+
+            // Disable the line renderer
             lineRenderer.enabled = false;
-            ReleaseObject();
+            
+            // Release the object if the hand is opening
+            if (HandOpening()) ReleaseObject();
+
+            // Update state
             if (grabbedObject == null){
-                // Update state
                 if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.Idle);
                 if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.Idle);
             }
@@ -150,7 +160,6 @@ public class DistanceGrabber : MonoBehaviour
     }
 
     void GrabObject(Vector3 target){
-        if (!HandClosing()) return;
 
         // Determine which object available is the closest from the target
         float minDistance = float.MaxValue;
@@ -182,9 +191,7 @@ public class DistanceGrabber : MonoBehaviour
         
     }
 
-    void ReleaseObject(){
-        if (!HandOpening()) return;
-        
+    public void ReleaseObject(){        
         if (grabbedObject != null){
             grabbedObject.DetachFrom(this);
             grabbedObject = null;
