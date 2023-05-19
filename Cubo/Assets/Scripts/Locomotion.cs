@@ -107,7 +107,7 @@ public class Locomotion : MonoBehaviour
         {
 
             // If the player is pointing
-            if (OVRInput.Get(OVRInput.Button.Three) && !playerPers.getRightTpPointing() && playerPers.getLeftState() != PlayerControllerPers.State.TpOnGoing && playerPers.getRightState() != PlayerControllerPers.State.TpOnGoing)
+            if (OVRInput.Get(OVRInput.Button.Three) && !playerPers.getRightTpPointing())
             {
 
                 // Left controller occupied
@@ -131,16 +131,6 @@ public class Locomotion : MonoBehaviour
 
                         // Update Tp state
                         playerPers.setLeftState(PlayerControllerPers.State.TpOnGoing);
-                        // Debug.Log("Left state à ce moment précis = " + playerPers.getLeftState());
-
-                        // // Fade the screen
-                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
-
-                        // // Tp the player
-                        // character_controller.Move(target_point - this.transform.position);
-
-                        // // Fade the screen
-                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
 
                     }
 
@@ -170,7 +160,7 @@ public class Locomotion : MonoBehaviour
         {
             
             // If the player is pointing
-            if (OVRInput.Get(OVRInput.Button.One) && !playerPers.getLeftTpPointing() && playerPers.getRightState() != PlayerControllerPers.State.TpOnGoing && playerPers.getLeftState() != PlayerControllerPers.State.TpOnGoing)
+            if (OVRInput.Get(OVRInput.Button.One) && !playerPers.getLeftTpPointing())
             {
 
                 // Right controller occupied
@@ -190,20 +180,12 @@ public class Locomotion : MonoBehaviour
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
 
-                        // // // Fade out
+                        // Fade out
                         centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
 
-                        // // // Update tp state
+                        // Update tp state
                         playerPers.setRightState(PlayerControllerPers.State.TpOnGoing);
-
-                        // // // Fade the screen
-                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
-
-                        // // // Tp the player
-                        // character_controller.Move(target_point - this.transform.position);
-
-                        // // // Fade the screen
-                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();                    
+                  
                     }
 
                 } 
@@ -232,6 +214,9 @@ public class Locomotion : MonoBehaviour
 
         // update time
         time += Time.deltaTime;
+
+        // Fixed marker position
+        marker_prefab_instanciated.transform.position = target_point;        
 
         // if fade out is finished
         if (end_fade()){
