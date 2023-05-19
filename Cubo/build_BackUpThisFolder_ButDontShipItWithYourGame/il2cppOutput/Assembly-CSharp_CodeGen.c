@@ -1537,122 +1537,124 @@ extern void ButtonVR_OnTriggerEnter_m892AAAFD8F55FCBA7E3DDE257A726C380FC16E22 (v
 extern void ButtonVR_OnTriggerExit_m61C76A03D8D4A8F152AF44336653588A20F293FC (void);
 // 0x00000302 System.Void ButtonVR::.ctor()
 extern void ButtonVR__ctor_m0A768C031E816B274D1BD5BB1758AB9FCF7E4FEE (void);
-// 0x00000303 System.Boolean ControllerGrabber::HandClosing()
-extern void ControllerGrabber_HandClosing_mB1954793F5F6007E987984961CE4A9FDBD9BAEEA (void);
-// 0x00000304 System.Boolean ControllerGrabber::HandOpening()
-extern void ControllerGrabber_HandOpening_m0A9CE4E443DD5D555711B7A8758DF5DEEFB3ABB9 (void);
-// 0x00000305 System.Void ControllerGrabber::.ctor()
-extern void ControllerGrabber__ctor_m8A679B5811125D75DB02DB5061352E2837CB1F8C (void);
-// 0x00000306 System.Boolean DistanceGrabbable::IsAvailable()
+// 0x00000303 System.Boolean DistanceGrabbable::IsAvailable()
 extern void DistanceGrabbable_IsAvailable_mE789F357C86047D8B729E42A296103747EABCEEA (void);
-// 0x00000307 System.Void DistanceGrabbable::Start()
+// 0x00000304 System.Void DistanceGrabbable::Start()
 extern void DistanceGrabbable_Start_m5B0F6EFBC3342D0D0ABA63C4415AE56903AE6F03 (void);
-// 0x00000308 System.Void DistanceGrabbable::AttachTo(DistanceGrabber)
+// 0x00000305 System.Void DistanceGrabbable::AttachTo(DistanceGrabber)
 extern void DistanceGrabbable_AttachTo_mCFBD229366A3883D2E9E15A298EBC1304692BD2A (void);
-// 0x00000309 System.Void DistanceGrabbable::DetachFrom(DistanceGrabber)
+// 0x00000306 System.Void DistanceGrabbable::DetachFrom(DistanceGrabber)
 extern void DistanceGrabbable_DetachFrom_m2E79A1CE1138B726A12E6921A4A02A8EDC9F366F (void);
-// 0x0000030A System.Void DistanceGrabbable::.ctor()
+// 0x00000307 System.Void DistanceGrabbable::.ctor()
 extern void DistanceGrabbable__ctor_mFA5054D08A013469847257AE56DEC22DD1F6190A (void);
-// 0x0000030B System.Void DistanceGrabber::Start()
+// 0x00000308 System.Void DistanceGrabber::Start()
 extern void DistanceGrabber_Start_m82153151D6FFEF4C7F9CAA947D178F96BBB00AB3 (void);
-// 0x0000030C System.Void DistanceGrabber::Update()
+// 0x00000309 System.Void DistanceGrabber::Update()
 extern void DistanceGrabber_Update_m2832FB14D2067689C23D3B963F44F19F8F070125 (void);
-// 0x0000030D System.Boolean DistanceGrabber::Aim(UnityEngine.Vector3&)
+// 0x0000030A System.Boolean DistanceGrabber::Aim(UnityEngine.Vector3&)
 extern void DistanceGrabber_Aim_m089726E7CE41688DE7C13A0AFCF148063FB2ED4C (void);
-// 0x0000030E System.Boolean DistanceGrabber::HandClosing()
+// 0x0000030B System.Boolean DistanceGrabber::HandClosing()
 extern void DistanceGrabber_HandClosing_m2C3350CF1FDEE6B7B863F7E37842569EE6856799 (void);
-// 0x0000030F System.Boolean DistanceGrabber::HandOpening()
+// 0x0000030C System.Boolean DistanceGrabber::HandOpening()
 extern void DistanceGrabber_HandOpening_m0A776A7B0D87C4456897C553BD84FDFBC9BF8621 (void);
-// 0x00000310 System.Void DistanceGrabber::DisplayRay(UnityEngine.Vector3)
+// 0x0000030D System.Void DistanceGrabber::DisplayRay(UnityEngine.Vector3)
 extern void DistanceGrabber_DisplayRay_m8C4178832FD5F36912A8DCB69846EAB8430F0562 (void);
-// 0x00000311 System.Void DistanceGrabber::SpawnSphere()
+// 0x0000030E System.Void DistanceGrabber::SpawnSphere()
 extern void DistanceGrabber_SpawnSphere_m0ED1872CD60AD05AF0EFF9F0529112272142E99D (void);
-// 0x00000312 System.Void DistanceGrabber::HandleGrabBehaviour()
+// 0x0000030F System.Void DistanceGrabber::HandleGrabBehaviour()
 extern void DistanceGrabber_HandleGrabBehaviour_mEE84002665042791071174985BE6447C8937359A (void);
-// 0x00000313 System.Void DistanceGrabber::GrabObject(UnityEngine.Vector3)
+// 0x00000310 System.Void DistanceGrabber::GrabObject(UnityEngine.Vector3)
 extern void DistanceGrabber_GrabObject_m8102B1C43E2DB0DF9729D17A8D16E798C3303023 (void);
-// 0x00000314 System.Void DistanceGrabber::ReleaseObject()
+// 0x00000311 System.Void DistanceGrabber::ReleaseObject()
 extern void DistanceGrabber_ReleaseObject_m007BF397530A5CB4B5AF00C4DECAB0724AAD2A1E (void);
-// 0x00000315 System.Void DistanceGrabber::.ctor()
+// 0x00000312 System.Void DistanceGrabber::.ctor()
 extern void DistanceGrabber__ctor_m9AEF2AA7AB559004C0A60D39419459A24F24245F (void);
-// 0x00000316 System.Void Grabber::Start()
+// 0x00000313 System.Void Grabber::Start()
 extern void Grabber_Start_m4EC35BC0E631FE73547E93183704E8F3A68BC903 (void);
-// 0x00000317 System.Void Grabber::Update()
+// 0x00000314 System.Void Grabber::Update()
 extern void Grabber_Update_m32936BEC2C749B92AC5A4A2EA219F91608D2CD3F (void);
-// 0x00000318 System.Boolean Grabber::HandClosing()
-// 0x00000319 System.Boolean Grabber::HandOpening()
-// 0x0000031A System.Void Grabber::HandleGrabBehaviour()
+// 0x00000315 System.Boolean Grabber::HandClosing()
+extern void Grabber_HandClosing_mF067AB18A08BF2D57F144C038E20D000AA7B32B8 (void);
+// 0x00000316 System.Boolean Grabber::HandOpening()
+extern void Grabber_HandOpening_m214C7391DE5268B780C3ABACAC33AC35CF286A91 (void);
+// 0x00000317 System.Void Grabber::HandleGrabBehaviour()
 extern void Grabber_HandleGrabBehaviour_m6AAC0B098113185674D01AE3AB8FF042ADE8CCB7 (void);
-// 0x0000031B System.Void Grabber::.ctor()
+// 0x00000318 System.Void Grabber::ReleaseObject()
+extern void Grabber_ReleaseObject_mBD3CDCDE3B1869605274DB7DEE76AF58DC511BE9 (void);
+// 0x00000319 System.Void Grabber::.ctor()
 extern void Grabber__ctor_mD4987BE7BAA275E3ABC02A15B1573F678AA4E727 (void);
-// 0x0000031C System.Boolean HandGrabber::HandClosing()
-extern void HandGrabber_HandClosing_m52C04EF791C5F6D3D2D5A443447EAD0FBFC04154 (void);
-// 0x0000031D System.Boolean HandGrabber::HandOpening()
-extern void HandGrabber_HandOpening_m80EB800B842089A66B35D8DC4DAFA0D176911C17 (void);
-// 0x0000031E System.Boolean HandGrabber::IsPinching()
-extern void HandGrabber_IsPinching_m4419E55F7002B4424A14499A9D79E15037C2E765 (void);
-// 0x0000031F System.Void HandGrabber::.ctor()
-extern void HandGrabber__ctor_mD1FC5390BD756C6AE8BE4CFF5C6025CA3E2698D0 (void);
-// 0x00000320 System.Void Locomotion::Start()
+// 0x0000031A System.Void Locomotion::Start()
 extern void Locomotion_Start_mAB76634DA97A23DA6318165E46191E34051F4FB7 (void);
-// 0x00000321 System.Void Locomotion::Update()
+// 0x0000031B System.Void Locomotion::Update()
 extern void Locomotion_Update_mF8A0851B1519A5C2E00ED49B3D56AFF8C73D69EE (void);
-// 0x00000322 System.Void Locomotion::handle_locomotion()
+// 0x0000031C System.Void Locomotion::handle_locomotion()
 extern void Locomotion_handle_locomotion_m9919D51D8A998D15AB067C5A15F6956381E695E7 (void);
-// 0x00000323 System.Boolean Locomotion::aim_with(UnityEngine.Vector3&)
+// 0x0000031D System.Boolean Locomotion::aim_with(UnityEngine.Vector3&)
 extern void Locomotion_aim_with_m5EB0F36A2BF737C33B77E6555C7410F6A549D052 (void);
-// 0x00000324 UnityEngine.RaycastHit Locomotion::getHit()
+// 0x0000031E UnityEngine.RaycastHit Locomotion::getHit()
 extern void Locomotion_getHit_m1F08C4E7CA50F06E6DCF1E057C6594C2B50D2775 (void);
-// 0x00000325 UnityEngine.Vector3[] Locomotion::curvedRaycast()
+// 0x0000031F UnityEngine.Vector3[] Locomotion::curvedRaycast()
 extern void Locomotion_curvedRaycast_m51BB20CEAFFE9CFF26FF6197D8BF4A5F8B22FE67 (void);
-// 0x00000326 System.Void Locomotion::.ctor()
+// 0x00000320 System.Void Locomotion::.ctor()
 extern void Locomotion__ctor_m8848ACEF9D3951CE4760A6C1C66A99A3F327A9D9 (void);
-// 0x00000327 System.Boolean ObjectGrabbable::IsAvailable()
+// 0x00000321 System.Boolean ObjectGrabbable::IsAvailable()
 extern void ObjectGrabbable_IsAvailable_mD111EDAEA3A12A420C9731B01B1DCED4374AC1F3 (void);
-// 0x00000328 System.Void ObjectGrabbable::Start()
+// 0x00000322 System.Void ObjectGrabbable::Start()
 extern void ObjectGrabbable_Start_mA7F125D327FE34B9F0222C41AE0CC353FCE23EAA (void);
-// 0x00000329 System.Void ObjectGrabbable::AttachTo(Grabber)
+// 0x00000323 System.Void ObjectGrabbable::AttachTo(Grabber)
 extern void ObjectGrabbable_AttachTo_mA18B2D49EB7326A32E081442045A3F044957FEEC (void);
-// 0x0000032A System.Void ObjectGrabbable::DetachFrom(Grabber)
+// 0x00000324 System.Void ObjectGrabbable::DetachFrom(Grabber)
 extern void ObjectGrabbable_DetachFrom_m2C6E1EF46B5A11D5400910E9D754132BA0E466FC (void);
-// 0x0000032B System.Void ObjectGrabbable::.ctor()
+// 0x00000325 System.Void ObjectGrabbable::.ctor()
 extern void ObjectGrabbable__ctor_mC9CFCBA20EAD2F7CE8A3AB30277841E55A997951 (void);
-// 0x0000032C System.Void ParabolaRay::Start()
+// 0x00000326 System.Void ParabolaRay::Start()
 extern void ParabolaRay_Start_m6AEDC0740D0C840C9FC5E8323C7328E0BF7469E6 (void);
-// 0x0000032D System.Void ParabolaRay::Update()
+// 0x00000327 System.Void ParabolaRay::Update()
 extern void ParabolaRay_Update_m8E1014256AC9A548B2DA174FAECEBBAE454E1562 (void);
-// 0x0000032E UnityEngine.Vector3[] ParabolaRay::curvedRaycast()
+// 0x00000328 UnityEngine.Vector3[] ParabolaRay::curvedRaycast()
 extern void ParabolaRay_curvedRaycast_m006C8BE064D7D5BD989442DE889CFB95F83EFBF8 (void);
-// 0x0000032F System.Void ParabolaRay::.ctor()
+// 0x00000329 System.Void ParabolaRay::.ctor()
 extern void ParabolaRay__ctor_mBE94EEBA08387C519511AA003F56DDBD9038FE6D (void);
-// 0x00000330 System.Void PlayerControllerPers::TpPlayerInCubo()
+// 0x0000032A System.Void PlayerControllerPers::TpPlayerInCubo()
 extern void PlayerControllerPers_TpPlayerInCubo_m641774A4DFF992DD9842F90E7E32561FEE48222E (void);
-// 0x00000331 System.Void PlayerControllerPers::TpPlayerInDesk()
+// 0x0000032B System.Void PlayerControllerPers::TpPlayerInDesk()
 extern void PlayerControllerPers_TpPlayerInDesk_m1FDC771093911AA1AFBC97AFACB9FE4FC8E02782 (void);
-// 0x00000332 System.Void PlayerControllerPers::setLeftTpPointing(System.Boolean)
+// 0x0000032C System.Void PlayerControllerPers::setLeftTpPointing(System.Boolean)
 extern void PlayerControllerPers_setLeftTpPointing_mCBC81B9AD4E627D52CD38C5D8536436D4CB73301 (void);
-// 0x00000333 System.Void PlayerControllerPers::setRightTpPointing(System.Boolean)
+// 0x0000032D System.Void PlayerControllerPers::setRightTpPointing(System.Boolean)
 extern void PlayerControllerPers_setRightTpPointing_mD68ED06B1146F0FA93A9DA116C924A9496CB0D5B (void);
-// 0x00000334 System.Boolean PlayerControllerPers::getLeftTpPointing()
+// 0x0000032E System.Boolean PlayerControllerPers::getLeftTpPointing()
 extern void PlayerControllerPers_getLeftTpPointing_mCB32FD575752E94212F561C1898C41E8699E1BB3 (void);
-// 0x00000335 System.Boolean PlayerControllerPers::getRightTpPointing()
+// 0x0000032F System.Boolean PlayerControllerPers::getRightTpPointing()
 extern void PlayerControllerPers_getRightTpPointing_mB5F53348E872D886C6C79A59C727995E18B9DD19 (void);
-// 0x00000336 System.Void PlayerControllerPers::setRightState(PlayerControllerPers/State)
+// 0x00000330 System.Void PlayerControllerPers::setRightState(PlayerControllerPers/State)
 extern void PlayerControllerPers_setRightState_mC28184DE28AB6ACAB2B0245F8BFDB82C23CAE8D7 (void);
-// 0x00000337 PlayerControllerPers/State PlayerControllerPers::getRightState()
+// 0x00000331 PlayerControllerPers/State PlayerControllerPers::getRightState()
 extern void PlayerControllerPers_getRightState_mB51F8C519325E4657D3B0B1C49F6624A035F8B55 (void);
-// 0x00000338 System.Void PlayerControllerPers::setLeftState(PlayerControllerPers/State)
+// 0x00000332 System.Void PlayerControllerPers::setLeftState(PlayerControllerPers/State)
 extern void PlayerControllerPers_setLeftState_m12862329EF74E4C2E8E6144E66CBFE703DBBABEE (void);
-// 0x00000339 PlayerControllerPers/State PlayerControllerPers::getLeftState()
+// 0x00000333 PlayerControllerPers/State PlayerControllerPers::getLeftState()
 extern void PlayerControllerPers_getLeftState_m16EB43E27B644A713639416944C6FCD02078C6F8 (void);
-// 0x0000033A System.Void PlayerControllerPers::Start()
+// 0x00000334 System.Void PlayerControllerPers::setCuboIsStable(System.Boolean)
+extern void PlayerControllerPers_setCuboIsStable_m02B24BAF53FD2FC5BA8505048212B50EA69722A1 (void);
+// 0x00000335 System.Void PlayerControllerPers::Start()
 extern void PlayerControllerPers_Start_m6D2D2C1A4D91B10732F1020BE28DE780D274A0BB (void);
-// 0x0000033B System.Void PlayerControllerPers::Update()
+// 0x00000336 System.Void PlayerControllerPers::Update()
 extern void PlayerControllerPers_Update_m22F66804C0826434283E7C6C357D354E017D0A94 (void);
-// 0x0000033C System.Void PlayerControllerPers::.ctor()
+// 0x00000337 System.Void PlayerControllerPers::.ctor()
 extern void PlayerControllerPers__ctor_m62436676BB750AFCEB930234D847B1576CBB3CBC (void);
-// 0x0000033D System.Void PlayerControllerPers::.cctor()
-extern void PlayerControllerPers__cctor_mD33D0639845E386CB959C52B99CF72416AADC3C8 (void);
+// 0x00000338 System.Void SmallCuboBehaviour::Start()
+extern void SmallCuboBehaviour_Start_m6560CB1F9E1AE5E6DBFEDF6E3A9B87358CAE3E88 (void);
+// 0x00000339 System.Void SmallCuboBehaviour::Update()
+extern void SmallCuboBehaviour_Update_m7E32B28B5838B6EB96E3673F60110DC4736DE04C (void);
+// 0x0000033A System.Void SmallCuboBehaviour::Respawn()
+extern void SmallCuboBehaviour_Respawn_m55FA2A52CA1D08D2CF61A0CF1BAE6BA728C38961 (void);
+// 0x0000033B System.Void SmallCuboBehaviour::UpdateCuboState()
+extern void SmallCuboBehaviour_UpdateCuboState_m71558DCEFEF4DCB74D583842E07CE607418C68AD (void);
+// 0x0000033C System.Boolean SmallCuboBehaviour::IsOneFaceDown()
+extern void SmallCuboBehaviour_IsOneFaceDown_mB197FFC732669201F3D5D17BA14670BB4961944B (void);
+// 0x0000033D System.Void SmallCuboBehaviour::.ctor()
+extern void SmallCuboBehaviour__ctor_m36B9C16FCDC8BE7B69FE14F0C5EF00D6C618964D (void);
 // 0x0000033E System.Boolean OculusSampleFramework.ColorGrabbable::get_Highlight()
 extern void ColorGrabbable_get_Highlight_m4F58065C790D757D19E29FBFBE43E5CD777C87E0 (void);
 // 0x0000033F System.Void OculusSampleFramework.ColorGrabbable::set_Highlight(System.Boolean)
@@ -3301,9 +3303,6 @@ static Il2CppMethodPointer s_methodPointers[1277] =
 	ButtonVR_OnTriggerEnter_m892AAAFD8F55FCBA7E3DDE257A726C380FC16E22,
 	ButtonVR_OnTriggerExit_m61C76A03D8D4A8F152AF44336653588A20F293FC,
 	ButtonVR__ctor_m0A768C031E816B274D1BD5BB1758AB9FCF7E4FEE,
-	ControllerGrabber_HandClosing_mB1954793F5F6007E987984961CE4A9FDBD9BAEEA,
-	ControllerGrabber_HandOpening_m0A9CE4E443DD5D555711B7A8758DF5DEEFB3ABB9,
-	ControllerGrabber__ctor_m8A679B5811125D75DB02DB5061352E2837CB1F8C,
 	DistanceGrabbable_IsAvailable_mE789F357C86047D8B729E42A296103747EABCEEA,
 	DistanceGrabbable_Start_m5B0F6EFBC3342D0D0ABA63C4415AE56903AE6F03,
 	DistanceGrabbable_AttachTo_mCFBD229366A3883D2E9E15A298EBC1304692BD2A,
@@ -3322,14 +3321,11 @@ static Il2CppMethodPointer s_methodPointers[1277] =
 	DistanceGrabber__ctor_m9AEF2AA7AB559004C0A60D39419459A24F24245F,
 	Grabber_Start_m4EC35BC0E631FE73547E93183704E8F3A68BC903,
 	Grabber_Update_m32936BEC2C749B92AC5A4A2EA219F91608D2CD3F,
-	NULL,
-	NULL,
+	Grabber_HandClosing_mF067AB18A08BF2D57F144C038E20D000AA7B32B8,
+	Grabber_HandOpening_m214C7391DE5268B780C3ABACAC33AC35CF286A91,
 	Grabber_HandleGrabBehaviour_m6AAC0B098113185674D01AE3AB8FF042ADE8CCB7,
+	Grabber_ReleaseObject_mBD3CDCDE3B1869605274DB7DEE76AF58DC511BE9,
 	Grabber__ctor_mD4987BE7BAA275E3ABC02A15B1573F678AA4E727,
-	HandGrabber_HandClosing_m52C04EF791C5F6D3D2D5A443447EAD0FBFC04154,
-	HandGrabber_HandOpening_m80EB800B842089A66B35D8DC4DAFA0D176911C17,
-	HandGrabber_IsPinching_m4419E55F7002B4424A14499A9D79E15037C2E765,
-	HandGrabber__ctor_mD1FC5390BD756C6AE8BE4CFF5C6025CA3E2698D0,
 	Locomotion_Start_mAB76634DA97A23DA6318165E46191E34051F4FB7,
 	Locomotion_Update_mF8A0851B1519A5C2E00ED49B3D56AFF8C73D69EE,
 	Locomotion_handle_locomotion_m9919D51D8A998D15AB067C5A15F6956381E695E7,
@@ -3356,10 +3352,16 @@ static Il2CppMethodPointer s_methodPointers[1277] =
 	PlayerControllerPers_getRightState_mB51F8C519325E4657D3B0B1C49F6624A035F8B55,
 	PlayerControllerPers_setLeftState_m12862329EF74E4C2E8E6144E66CBFE703DBBABEE,
 	PlayerControllerPers_getLeftState_m16EB43E27B644A713639416944C6FCD02078C6F8,
+	PlayerControllerPers_setCuboIsStable_m02B24BAF53FD2FC5BA8505048212B50EA69722A1,
 	PlayerControllerPers_Start_m6D2D2C1A4D91B10732F1020BE28DE780D274A0BB,
 	PlayerControllerPers_Update_m22F66804C0826434283E7C6C357D354E017D0A94,
 	PlayerControllerPers__ctor_m62436676BB750AFCEB930234D847B1576CBB3CBC,
-	PlayerControllerPers__cctor_mD33D0639845E386CB959C52B99CF72416AADC3C8,
+	SmallCuboBehaviour_Start_m6560CB1F9E1AE5E6DBFEDF6E3A9B87358CAE3E88,
+	SmallCuboBehaviour_Update_m7E32B28B5838B6EB96E3673F60110DC4736DE04C,
+	SmallCuboBehaviour_Respawn_m55FA2A52CA1D08D2CF61A0CF1BAE6BA728C38961,
+	SmallCuboBehaviour_UpdateCuboState_m71558DCEFEF4DCB74D583842E07CE607418C68AD,
+	SmallCuboBehaviour_IsOneFaceDown_mB197FFC732669201F3D5D17BA14670BB4961944B,
+	SmallCuboBehaviour__ctor_m36B9C16FCDC8BE7B69FE14F0C5EF00D6C618964D,
 	ColorGrabbable_get_Highlight_m4F58065C790D757D19E29FBFBE43E5CD777C87E0,
 	ColorGrabbable_set_Highlight_m8B7FE88DF23A163B4B49CEF2969F883E477498E7,
 	ColorGrabbable_UpdateColor_mCE9D7D0D07EFD5755541BA9DAB7E6CB8AA29DE2F,
@@ -4582,9 +4584,6 @@ static const int32_t s_InvokerIndices[1277] =
 	4299,
 	5309,
 	5115,
-	5115,
-	5309,
-	5115,
 	5309,
 	4299,
 	4299,
@@ -4602,13 +4601,10 @@ static const int32_t s_InvokerIndices[1277] =
 	5309,
 	5309,
 	5309,
-	0,
-	0,
+	5115,
+	5115,
 	5309,
 	5309,
-	5115,
-	5115,
-	5115,
 	5309,
 	5309,
 	5309,
@@ -4636,10 +4632,16 @@ static const int32_t s_InvokerIndices[1277] =
 	5165,
 	4267,
 	5165,
+	4211,
 	5309,
 	5309,
 	5309,
-	7920,
+	5309,
+	5309,
+	5309,
+	5309,
+	5115,
+	5309,
 	5115,
 	4211,
 	5309,

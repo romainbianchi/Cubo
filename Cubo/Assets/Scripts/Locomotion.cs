@@ -52,7 +52,7 @@ public class Locomotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         character_controller = player.GetComponent<CharacterController>();
+        character_controller = player.GetComponent<CharacterController>();
 
         lineRenderer = GetComponent<LineRenderer>(); 
     }
@@ -128,7 +128,6 @@ public class Locomotion : MonoBehaviour
                 marker_prefab_instanciated = null;
 
                 lineRenderer.enabled = false;
-                lineRenderer.startColor = Color.red;
 
             }
         }
@@ -179,7 +178,6 @@ public class Locomotion : MonoBehaviour
                 if ( marker_prefab_instanciated != null ) Destroy( marker_prefab_instanciated);
                 marker_prefab_instanciated = null;
                 lineRenderer.enabled = false;
-                lineRenderer.startColor = Color.red;
 
             }
         }
@@ -220,7 +218,6 @@ public class Locomotion : MonoBehaviour
             lineRenderer.SetPosition(i, point);
         }
 
-        lineRenderer.startColor = Color.green;
         lineRenderer.enabled = true;
 
         return hit;
