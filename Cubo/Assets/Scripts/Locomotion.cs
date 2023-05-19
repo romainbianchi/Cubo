@@ -11,6 +11,10 @@ public class Locomotion : MonoBehaviour
     public ControllerType controllerType = ControllerType.LeftController;
 
 
+    [Header( "Materials of line renderer")]
+    public Material RedlineRendererMaterial;
+    public Material GreenlineRendererMaterial;
+
     [Header( "Maximum Distance" )]
 	[Range( 2f, 30f )]
 	// Store the maximum distance the player can teleport
@@ -124,9 +128,8 @@ public class Locomotion : MonoBehaviour
                     if ( marker_prefab_instanciated == null ) marker_prefab_instanciated = GameObject.Instantiate( markerPrefab, this.transform );
                     marker_prefab_instanciated.transform.position = target_point;
 
-                    // Set the line renderer to red
-                    lineRenderer.startColor = Color.red;
-                    lineRenderer.endColor = Color.red;
+                    // Set the material to red
+                    lineRenderer.material = RedlineRendererMaterial;
 
                     // Set the marker prefab to red
                     marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.red;
@@ -134,9 +137,8 @@ public class Locomotion : MonoBehaviour
                     // Check if the player is too far from the target point
                     if (Vector3.Distance(player.transform.position, target_point) > maximumTeleportationDistance) return;
                     
-                    // Set the line renderer to green
-                    lineRenderer.startColor = Color.green;
-                    lineRenderer.endColor = Color.green;
+                    // Set the material to green
+                    lineRenderer.material = GreenlineRendererMaterial;
 
                     // Set the marker prefab to green
                     marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.green;
@@ -193,10 +195,8 @@ public class Locomotion : MonoBehaviour
                     if ( marker_prefab_instanciated == null ) marker_prefab_instanciated = GameObject.Instantiate( markerPrefab, this.transform );
                     marker_prefab_instanciated.transform.position = target_point;
 
-                    // Set the line renderer to red
-                    lineRenderer.SetColors(Color.red, Color.red);
-                    // lineRenderer.startColor = Color.red;
-                    // lineRenderer.endColor = Color.red;
+                    // Set the material to red
+                    lineRenderer.material = RedlineRendererMaterial;
 
                     // Set the marker prefab to red
                     marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.red;
@@ -204,10 +204,8 @@ public class Locomotion : MonoBehaviour
                     // Check if the player is too far from the target point
                     if (Vector3.Distance(player.transform.position, target_point) > maximumTeleportationDistance) return;
                     
-                    // Set the line renderer to green
-                    lineRenderer.SetColors(Color.green, Color.green);
-                    // lineRenderer.startColor = Color.green;
-                    // lineRenderer.endColor = Color.green;
+                    // Set the material to green
+                    lineRenderer.material = GreenlineRendererMaterial;
 
                     // Set the marker prefab to green
                     marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.green;
