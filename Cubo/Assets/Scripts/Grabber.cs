@@ -27,8 +27,8 @@ public class Grabber : MonoBehaviour
     void Update()
     {
         // State check
-        if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)) return;
-        if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+        if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing)) return;
+        if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing)) return;
         
         // At each frame, handle the controller grasp behaviour
         HandleGrabBehaviour();

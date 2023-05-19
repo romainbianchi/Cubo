@@ -138,10 +138,10 @@ public class Locomotion : MonoBehaviour
 
             } else {
 
-                // Right controller available
+                // Left controller available
                 playerPers.setLeftState(PlayerControllerPers.State.Idle);
 
-                // Right controller not pointing
+                // Left controller not pointing
                 playerPers.setLeftTpPointing(false);
 
                 // destroy the marker prefab if it exists
@@ -224,10 +224,9 @@ public class Locomotion : MonoBehaviour
             // reset time
             time = 0f;
             // tp player
-            character_controller.Move(target_point - this.transform.position);
-            // character_controller.enabled = false;
-            // character_controller.transform.position = target_point + new Vector3(0, character_controller.height/2, 0);
-            // character_controller.enabled = true;
+            character_controller.enabled = false;
+            character_controller.transform.position = target_point + new Vector3(0, character_controller.height/2, 0);
+            character_controller.enabled = true;
             // Fade in
             centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
         }

@@ -15729,11 +15729,11 @@ IL_0011:
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Grabber_Update_m32936BEC2C749B92AC5A4A2EA219F91608D2CD3F (Grabber_t5D21331F2D9A8E974CC4B37E644A8CCA8048DA8A* __this, const RuntimeMethod* method) 
 {
 	{
-		// if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+		// if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing)) return;
 		int32_t L_0 = __this->___controllerType_4;
 		if (L_0)
 		{
-			goto IL_0024;
+			goto IL_0032;
 		}
 	}
 	{
@@ -15743,7 +15743,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Grabber_Update_m32936BEC2C749B92AC5A4A2E
 		L_2 = PlayerControllerPers_getLeftState_m16EB43E27B644A713639416944C6FCD02078C6F8_inline(L_1, NULL);
 		if (!L_2)
 		{
-			goto IL_0023;
+			goto IL_0031;
 		}
 	}
 	{
@@ -15751,35 +15751,35 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Grabber_Update_m32936BEC2C749B92AC5A4A2E
 		NullCheck(L_3);
 		int32_t L_4;
 		L_4 = PlayerControllerPers_getLeftState_m16EB43E27B644A713639416944C6FCD02078C6F8_inline(L_3, NULL);
-		if ((!(((uint32_t)L_4) == ((uint32_t)2))))
+		if ((((int32_t)L_4) == ((int32_t)2)))
 		{
-			goto IL_0024;
+			goto IL_0031;
+		}
+	}
+	{
+		PlayerControllerPers_tAAB7B6E10C936A234426E7FD4B3F4592144C8F4D* L_5 = __this->___playerPers_5;
+		NullCheck(L_5);
+		int32_t L_6;
+		L_6 = PlayerControllerPers_getLeftState_m16EB43E27B644A713639416944C6FCD02078C6F8_inline(L_5, NULL);
+		if ((!(((uint32_t)L_6) == ((uint32_t)1))))
+		{
+			goto IL_0032;
 		}
 	}
 
-IL_0023:
+IL_0031:
 	{
-		// if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+		// if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing)) return;
 		return;
 	}
 
-IL_0024:
+IL_0032:
 	{
-		// if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing)) return;
-		int32_t L_5 = __this->___controllerType_4;
-		if ((!(((uint32_t)L_5) == ((uint32_t)1))))
+		// if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing)) return;
+		int32_t L_7 = __this->___controllerType_4;
+		if ((!(((uint32_t)L_7) == ((uint32_t)1))))
 		{
-			goto IL_0049;
-		}
-	}
-	{
-		PlayerControllerPers_tAAB7B6E10C936A234426E7FD4B3F4592144C8F4D* L_6 = __this->___playerPers_5;
-		NullCheck(L_6);
-		int32_t L_7;
-		L_7 = PlayerControllerPers_getRightState_mB51F8C519325E4657D3B0B1C49F6624A035F8B55_inline(L_6, NULL);
-		if (!L_7)
-		{
-			goto IL_0048;
+			goto IL_0065;
 		}
 	}
 	{
@@ -15787,19 +15787,39 @@ IL_0024:
 		NullCheck(L_8);
 		int32_t L_9;
 		L_9 = PlayerControllerPers_getRightState_mB51F8C519325E4657D3B0B1C49F6624A035F8B55_inline(L_8, NULL);
-		if ((!(((uint32_t)L_9) == ((uint32_t)2))))
+		if (!L_9)
 		{
-			goto IL_0049;
+			goto IL_0064;
+		}
+	}
+	{
+		PlayerControllerPers_tAAB7B6E10C936A234426E7FD4B3F4592144C8F4D* L_10 = __this->___playerPers_5;
+		NullCheck(L_10);
+		int32_t L_11;
+		L_11 = PlayerControllerPers_getRightState_mB51F8C519325E4657D3B0B1C49F6624A035F8B55_inline(L_10, NULL);
+		if ((((int32_t)L_11) == ((int32_t)2)))
+		{
+			goto IL_0064;
+		}
+	}
+	{
+		PlayerControllerPers_tAAB7B6E10C936A234426E7FD4B3F4592144C8F4D* L_12 = __this->___playerPers_5;
+		NullCheck(L_12);
+		int32_t L_13;
+		L_13 = PlayerControllerPers_getRightState_mB51F8C519325E4657D3B0B1C49F6624A035F8B55_inline(L_12, NULL);
+		if ((!(((uint32_t)L_13) == ((uint32_t)1))))
+		{
+			goto IL_0065;
 		}
 	}
 
-IL_0048:
+IL_0064:
 	{
-		// if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+		// if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing)) return;
 		return;
 	}
 
-IL_0049:
+IL_0065:
 	{
 		// HandleGrabBehaviour();
 		Grabber_HandleGrabBehaviour_m6AAC0B098113185674D01AE3AB8FF042ADE8CCB7(__this, NULL);
