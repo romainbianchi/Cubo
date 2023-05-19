@@ -79,19 +79,20 @@ public class Locomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Player is teleporting
-        // if (controllerType == ControllerType.LeftController && playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing) {
-            // handle_tp();
-            // return;
-        // }
-        // if (controllerType == ControllerType.RightController|| playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing){
-        //     handle_tp();
-        //     return;
-        // }
+        if (controllerType == ControllerType.LeftController && playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing) {
+            handle_tp();
+            return;
+        }
+        if (controllerType == ControllerType.RightController && playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing){
+            handle_tp();
+            return;
+        }
         
         // State check
-        if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Grabbing || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)) return;
-        if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Grabbing || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+        if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Grabbing || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing)) return;
+        if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Grabbing || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing || playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing)) return;
 
         // Handle locomotion behavior
         handle_locomotion();
@@ -106,7 +107,7 @@ public class Locomotion : MonoBehaviour
         {
 
             // If the player is pointing
-            if (OVRInput.Get(OVRInput.Button.Three) && !playerPers.getRightTpPointing())
+            if (OVRInput.Get(OVRInput.Button.Three) && !playerPers.getRightTpPointing() && playerPers.getLeftState() != PlayerControllerPers.State.TpOnGoing && playerPers.getRightState() != PlayerControllerPers.State.TpOnGoing)
             {
 
                 // Left controller occupied
@@ -126,17 +127,17 @@ public class Locomotion : MonoBehaviour
                     if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                     {
                         // Fade out
-                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+                        centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
 
                         // Update Tp state
-                        // playerPers.setLeftState(PlayerControllerPers.State.TpOnGoing);
-                        // return;
+                        playerPers.setLeftState(PlayerControllerPers.State.TpOnGoing);
+                        // Debug.Log("Left state à ce moment précis = " + playerPers.getLeftState());
 
                         // // Fade the screen
                         // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
 
                         // // Tp the player
-                        character_controller.Move(target_point - this.transform.position);
+                        // character_controller.Move(target_point - this.transform.position);
 
                         // // Fade the screen
                         // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
@@ -169,7 +170,7 @@ public class Locomotion : MonoBehaviour
         {
             
             // If the player is pointing
-            if (OVRInput.Get(OVRInput.Button.One) && !playerPers.getLeftTpPointing())
+            if (OVRInput.Get(OVRInput.Button.One) && !playerPers.getLeftTpPointing() && playerPers.getRightState() != PlayerControllerPers.State.TpOnGoing && playerPers.getLeftState() != PlayerControllerPers.State.TpOnGoing)
             {
 
                 // Right controller occupied
@@ -190,16 +191,16 @@ public class Locomotion : MonoBehaviour
                     {
 
                         // // // Fade out
-                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+                        centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
 
                         // // // Update tp state
-                        // playerPers.setRightState(PlayerControllerPers.State.TpOnGoing);
+                        playerPers.setRightState(PlayerControllerPers.State.TpOnGoing);
 
                         // // // Fade the screen
                         // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
 
                         // // // Tp the player
-                        character_controller.Move(target_point - this.transform.position);
+                        // character_controller.Move(target_point - this.transform.position);
 
                         // // // Fade the screen
                         // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();                    
