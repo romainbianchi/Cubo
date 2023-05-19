@@ -9,7 +9,7 @@ public class PlayerControllerPers : MonoBehaviour
     public GameObject inDeskPos;
 
     // States
-    public enum State {Locomotion, DistanceGrabbing, Grabbing, Idle}
+    public enum State {Locomotion, TpOnGoing, DistanceGrabbing, Grabbing, Idle}
     private State right_state = State.Idle;
     private State left_state = State.Idle;
 
