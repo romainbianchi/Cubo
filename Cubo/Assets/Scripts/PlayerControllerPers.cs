@@ -22,7 +22,6 @@ public class PlayerControllerPers : MonoBehaviour
     {
         // TP the player in cubo
         if (!cuboIsStable) return;
-        inDeskPos.transform.position = transform.position;
         this.GetComponent<CharacterController>().enabled = false;
         transform.position = inCuboPos.transform.position;
         this.GetComponent<CharacterController>().enabled = true;            
@@ -31,7 +30,6 @@ public class PlayerControllerPers : MonoBehaviour
     public void TpPlayerInDesk()
     {
         // TP the player in desk
-        inCuboPos.transform.position = transform.position;
         this.GetComponent<CharacterController>().enabled = false;
         transform.position = inDeskPos.transform.position;
         this.GetComponent<CharacterController>().enabled = true;
@@ -87,11 +85,6 @@ public class PlayerControllerPers : MonoBehaviour
 
 	void Start () 
     { 
-        // Set the initial position of the desk pos
-        deskPos = transform.position;
-
-        // Set the initial position of the in_cubo_pos
-        inCuboPos.transform.position = new Vector3(inCuboPos.transform.position.x, transform.position.y, inCuboPos.transform.position.z);
     }
 
     void Update()

@@ -201,10 +201,10 @@ public class CharacterCameraConstraint : MonoBehaviour
 			}
 		}
 
-		//if (EnableFadeout)
-		//{
-			//float fadeLevel = Mathf.Clamp01((CurrentDistance - FadeMinDistance)/ (FadeMaxDistance - FadeMinDistance));
-			//OVRInspector.instance.fader.SetFadeLevel(fadeLevel * MaxFade);
-		//}
+		// if (EnableFadeout)
+		// {
+		// 	float fadeLevel = Mathf.Clamp01((CurrentDistance - FadeMinDistance)/ (FadeMaxDistance - FadeMinDistance));
+		// 	OVRInspector.instance.fader.SetFadeLevel(fadeLevel * MaxFade);
+		// }
 	}
 }
