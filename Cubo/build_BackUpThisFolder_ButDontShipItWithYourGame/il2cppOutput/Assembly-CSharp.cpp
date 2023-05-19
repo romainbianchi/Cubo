@@ -469,6 +469,8 @@ struct LaserPointer_t0E77E38E488CC0E97D2E29F61CA3422430FEB874;
 struct LayoutElement_tB1F24CC11AF4AA87015C8D8EE06D22349C5BF40A;
 // UnityEngine.LineRenderer
 struct LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D;
+// LinkPosition
+struct LinkPosition_tE5B220CBCA16ACC99962AAC99ECA53FDDB1B1572;
 // LocomotionController
 struct LocomotionController_t2DE97B1421644D9463ED12409E3A77B241B29D89;
 // LocomotionTeleport
@@ -4134,6 +4136,13 @@ struct HandedInputSelector_t03E81F27E4BABDA2242FEDC37F67FEACF7DD2E75  : public M
 	OVRInputModule_tA57D6FB43C84C28A9A6300E1B97F01703A87FD8A* ___m_InputModule_5;
 };
 
+// LinkPosition
+struct LinkPosition_tE5B220CBCA16ACC99962AAC99ECA53FDDB1B1572  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	// OVRCameraRig LinkPosition::cameraRig
+	OVRCameraRig_t7FC2BB0D30DED2B7F0C8914AF2B66E9F4CF891A9* ___cameraRig_4;
+};
+
 // LocomotionController
 struct LocomotionController_t2DE97B1421644D9463ED12409E3A77B241B29D89  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
@@ -6831,6 +6840,10 @@ struct DebugUIBuilder_tC18B19AE08445BA1378C7DABB0E4858217E02E71_StaticFields
 // HandedInputSelector
 
 // HandedInputSelector
+
+// LinkPosition
+
+// LinkPosition
 
 // LocomotionController
 
@@ -11197,6 +11210,62 @@ IL_0067:
 }
 // System.Void ControllerRaycast::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ControllerRaycast__ctor_mF887DD16154F9DF555EEEF6F44B5874B1F79052E (ControllerRaycast_tFE4F3662D3119B8A6E47E5DB7C923E3F8600B876* __this, const RuntimeMethod* method) 
+{
+	{
+		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void LinkPosition::Start()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LinkPosition_Start_m493A453958C8BEC8EBDF1F437ACCB8CF1CA2ABC2 (LinkPosition_tE5B220CBCA16ACC99962AAC99ECA53FDDB1B1572* __this, const RuntimeMethod* method) 
+{
+	{
+		// transform.position = cameraRig.transform.position;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_0;
+		L_0 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		OVRCameraRig_t7FC2BB0D30DED2B7F0C8914AF2B66E9F4CF891A9* L_1 = __this->___cameraRig_4;
+		NullCheck(L_1);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_2;
+		L_2 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_1, NULL);
+		NullCheck(L_2);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_3;
+		L_3 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_2, NULL);
+		NullCheck(L_0);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_0, L_3, NULL);
+		// }
+		return;
+	}
+}
+// System.Void LinkPosition::Update()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LinkPosition_Update_mBD7E6483213B61D6812E30FD89EAFAAEB14DADE5 (LinkPosition_tE5B220CBCA16ACC99962AAC99ECA53FDDB1B1572* __this, const RuntimeMethod* method) 
+{
+	{
+		// transform.position = cameraRig.transform.position;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_0;
+		L_0 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		OVRCameraRig_t7FC2BB0D30DED2B7F0C8914AF2B66E9F4CF891A9* L_1 = __this->___cameraRig_4;
+		NullCheck(L_1);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_2;
+		L_2 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_1, NULL);
+		NullCheck(L_2);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_3;
+		L_3 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_2, NULL);
+		NullCheck(L_0);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_0, L_3, NULL);
+		// }
+		return;
+	}
+}
+// System.Void LinkPosition::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LinkPosition__ctor_mD5176A2B902F3409EB2880DCAB0CFCE9177D98F9 (LinkPosition_tE5B220CBCA16ACC99962AAC99ECA53FDDB1B1572* __this, const RuntimeMethod* method) 
 {
 	{
 		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);

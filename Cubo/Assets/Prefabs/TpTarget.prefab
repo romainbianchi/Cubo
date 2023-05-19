@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2241463758428916474}
   - component: {fileID: 2241463758428916477}
   - component: {fileID: 3545952950421157279}
+  - component: {fileID: -4366236170385939781}
   m_Layer: 0
   m_Name: TpTarget
   m_TagString: Untagged
@@ -85,6 +86,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3545952950421157279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241463758428916479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cc12c8f151b4d14b5b9d2c61018fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4366236170385939781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
