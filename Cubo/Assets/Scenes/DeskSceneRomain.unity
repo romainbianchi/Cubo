@@ -6635,10 +6635,10 @@ MonoBehaviour:
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
   centerEyeAnchor: {fileID: 1207587833}
-  rayCastSpawnLimit: 300
-  rayCastLength: 0.05
+  rayCastSpawnLimit: 500
+  rayCastLength: 0.06
   gravity: 9.81
-  smooth: 0.0008
+  smooth: 0.001
   rayCastEnlargorFactor: 3
 --- !u!136 &1207587850
 CapsuleCollider:
