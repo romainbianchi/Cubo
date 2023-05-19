@@ -30,8 +30,13 @@ public class Locomotion : MonoBehaviour
     private CharacterController character_controller;
 
 
+    // To fade screen
+    public GameObject centerEyeAnchor;
+
+
     //Point de contact avec le sol
     public RaycastHit hit;
+
 
     //Raycast parameters
     private List<Vector3> positions;
@@ -48,11 +53,17 @@ public class Locomotion : MonoBehaviour
     private int amountOfRaycastsSpawned;
     public float rayCastEnlargorFactor = 2.0f; // facteur pour regler les pb de collisions
 
+    //Fade timer parameters
+    protected float time = 0f;
+    private float fade_time;
+
 
     // Start is called before the first frame update
     void Start()
     {
-         character_controller = player.GetComponent<CharacterController>();
+        character_controller = player.GetComponent<CharacterController>();
+         
+        fade_time = centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime;
 
         lineRenderer = GetComponent<LineRenderer>(); 
     }
@@ -61,10 +72,6 @@ public class Locomotion : MonoBehaviour
     // Keep track of the teleportation state to prevent continuous teleportation
 	protected bool teleportation_locked = false;
 
-    // Keep track of the pointing state
-	// protected bool left_pointing = false;
-    // protected bool right_pointing = false;
-
     // Store Tp target point
     protected Vector3 target_point;
 
@@ -72,9 +79,20 @@ public class Locomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Player is teleporting
+        // if (controllerType == ControllerType.LeftController && playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing) {
+            // handle_tp();
+            // return;
+        // }
+        // if (controllerType == ControllerType.RightController|| playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing){
+        //     handle_tp();
+        //     return;
+        // }
+        
         // State check
         if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Grabbing || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)) return;
         if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Grabbing || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing)) return;
+
         // Handle locomotion behavior
         handle_locomotion();
     }
@@ -86,6 +104,7 @@ public class Locomotion : MonoBehaviour
         // Left controller Tp
         if (controllerType == ControllerType.LeftController)
         {
+
             // If the player is pointing
             if (OVRInput.Get(OVRInput.Button.Three) && !playerPers.getRightTpPointing())
             {
@@ -106,28 +125,42 @@ public class Locomotion : MonoBehaviour
 
                     if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                     {
-                        // Tp the player
+                        // Fade out
+                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+
+                        // Update Tp state
+                        // playerPers.setLeftState(PlayerControllerPers.State.TpOnGoing);
+                        // return;
+
+                        // // Fade the screen
+                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+
+                        // // Tp the player
                         character_controller.Move(target_point - this.transform.position);
+
+                        // // Fade the screen
+                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
+
                     }
 
                 }
 
             } else {
 
-                // Left controller available
+                // Right controller available
                 playerPers.setLeftState(PlayerControllerPers.State.Idle);
 
-                // Left controller not pointing
+                // Right controller not pointing
                 playerPers.setLeftTpPointing(false);
 
                 // destroy the marker prefab if it exists
                 if ( marker_prefab_instanciated != null ) Destroy( marker_prefab_instanciated);
                 marker_prefab_instanciated = null;
-
                 lineRenderer.enabled = false;
                 lineRenderer.startColor = Color.red;
 
             }
+
         }
 
 
@@ -155,8 +188,21 @@ public class Locomotion : MonoBehaviour
 
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
-                        // Tp the player
+
+                        // // // Fade out
+                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+
+                        // // // Update tp state
+                        // playerPers.setRightState(PlayerControllerPers.State.TpOnGoing);
+
+                        // // // Fade the screen
+                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+
+                        // // // Tp the player
                         character_controller.Move(target_point - this.transform.position);
+
+                        // // // Fade the screen
+                        // centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();                    
                     }
 
                 } 
@@ -181,6 +227,26 @@ public class Locomotion : MonoBehaviour
     }
 
 
+    private void handle_tp(){
+
+        // update time
+        time += Time.deltaTime;
+
+        // if fade out is finished
+        if (end_fade()){
+            // update tp state
+            if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.Idle);
+            if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.Idle);
+            // reset time
+            time = 0f;
+            // tp player
+            character_controller.Move(target_point - this.transform.position);
+            // Fade in
+            centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
+        }
+    }
+
+
 	protected bool aim_with (out Vector3 target_point) {
 
 		// Default the "output" target point to the null vector
@@ -197,6 +263,7 @@ public class Locomotion : MonoBehaviour
 		target_point = hit.point;
 		return true;
 	}
+
 
     private RaycastHit getHit()
     {
@@ -250,6 +317,13 @@ public class Locomotion : MonoBehaviour
         
         // On retourne la liste de points pour afficher le line renderer apres l'appel de la fonction
         return positions.ToArray();
+    }
+
+    private bool end_fade()
+    {
+        if (time > fade_time) return true;
+
+        return false;
     }
 
 }
