@@ -18,9 +18,13 @@ public class DistanceGrabber : MonoBehaviour
     static protected DistanceGrabbable[] objectsGrabbable = null;
 
     // Store the object pointed by the player
-    protected GameObject pointedObject = null;
+    protected GameObject pointedObject;
+    protected GameObject previousPointedObject;
 
+    // Line renderer parameters
     private LineRenderer lineRenderer;
+    public Material redMaterial;
+    public Material greenMaterial;
 
     // Player
     [Header("Player")]
@@ -33,6 +37,8 @@ public class DistanceGrabber : MonoBehaviour
         if (objectsGrabbable == null) objectsGrabbable = GameObject.FindObjectsOfType<DistanceGrabbable>();
 
         lineRenderer = GetComponent<LineRenderer>();
+
+        pointedObject = null;
     }
 
     // Update is called once per frame
@@ -57,10 +63,10 @@ public class DistanceGrabber : MonoBehaviour
         if (grabbedObject != null) return false;
 
         // Check if the player is pressing button 2 or 4
-        if (controllerType == ControllerType.LeftController) return OVRInput.Get(OVRInput.Button.Four);
-        if (controllerType == ControllerType.RightController) return OVRInput.Get(OVRInput.Button.Two);
+        if (controllerType == ControllerType.LeftController && !OVRInput.Get(OVRInput.Button.Four)) return false;
+        if (controllerType == ControllerType.RightController && !OVRInput.Get(OVRInput.Button.Two)) return false;
 
-        return false;
+        return true;
     }
 
     // Check if the player is aiming at an object
@@ -87,11 +93,7 @@ public class DistanceGrabber : MonoBehaviour
         // Check if the object is available
         if (!pointedObject.GetComponent<DistanceGrabbable>().IsAvailable()) return false;
 
-        // Set the object as pointed
-        pointedObject.GetComponent<DistanceGrabbable>().IsPointed(true);
-
         return true;
-
     }
 
     // Check if the player is closing the hand
@@ -144,28 +146,42 @@ public class DistanceGrabber : MonoBehaviour
     void HandleGrabBehaviour()
     {
         if (Aim()){
+           
+            // Update state
+            if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.DistanceGrabbing);
+            if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.DistanceGrabbing);
 
-            lineRenderer.enabled = true;
+            // Set the line renderer color to red
+            lineRenderer.material = redMaterial;
 
             Vector3 hitPoint = Vector3.zero;
+            pointedObject = null;
 
-            if (RayHit(out hitPoint))
+            if (RayHit(out hitPoint)) // This function updates the hitpoint and pointedObject
             {
-                // Grab the object if the hand is closing
-                if (HandClosing()) GrabObject();
+                // Set the line renderer color to green
+                lineRenderer.material = greenMaterial;
 
-                // Update state
-                if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.DistanceGrabbing);
-                if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.DistanceGrabbing);
+                // Grab the object if the hand is closing
+                if (HandClosing()) GrabObject(hitPoint);
             }
+
+            // If the object pointed has changed, then update the previous object
+            if (pointedObject != previousPointedObject && previousPointedObject != null) previousPointedObject.GetComponent<DistanceGrabbable>().IsPointed(false);
             
+            // If the object pointed is not null, then update the object
+            if (pointedObject != null) pointedObject.GetComponent<DistanceGrabbable>().IsPointed(true);
+
+            // Update the previous object
+            previousPointedObject = pointedObject;
+
             DisplayRay(hitPoint);
 
         } else {
             lineRenderer.enabled = false;
             
-            // Set all objects as not pointed
-            foreach (DistanceGrabbable obj in objectsGrabbable) obj.IsPointed(false);
+            if (pointedObject != null) pointedObject.GetComponent<DistanceGrabbable>().IsPointed(false);
+            pointedObject = null;
             
             // Release the object if the hand is opening
             if (HandOpening()) ReleaseObject();
@@ -178,13 +194,13 @@ public class DistanceGrabber : MonoBehaviour
         }
     }
 
-    void GrabObject(){
+    void GrabObject(Vector3 hitPoint){
         // If there is a closest object
         if (pointedObject != null) {
             // Then save it as the grasped anchor
             grabbedObject = pointedObject.GetComponent<DistanceGrabbable>();
             // And attach the anchor to the hand
-            grabbedObject.AttachTo(this);
+            grabbedObject.AttachTo(this, hitPoint);
         }
         
     }
