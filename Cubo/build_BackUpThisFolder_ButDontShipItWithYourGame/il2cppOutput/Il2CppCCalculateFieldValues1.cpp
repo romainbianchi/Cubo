@@ -28104,50 +28104,54 @@ struct Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0  : public MonoBehavi
 {
 	// Locomotion/ControllerType Locomotion::controllerType
 	int32_t ___controllerType_4;
+	// UnityEngine.Material Locomotion::RedlineRendererMaterial
+	Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* ___RedlineRendererMaterial_5;
+	// UnityEngine.Material Locomotion::GreenlineRendererMaterial
+	Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* ___GreenlineRendererMaterial_6;
 	// System.Single Locomotion::maximumTeleportationDistance
-	float ___maximumTeleportationDistance_5;
+	float ___maximumTeleportationDistance_7;
 	// UnityEngine.GameObject Locomotion::markerPrefab
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___markerPrefab_6;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___markerPrefab_8;
 	// UnityEngine.GameObject Locomotion::marker_prefab_instanciated
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___marker_prefab_instanciated_7;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___marker_prefab_instanciated_9;
 	// OVRPlayerController Locomotion::player
-	OVRPlayerController_t6DEB1668590462765911AEAB2DA399DA8BD99575* ___player_8;
+	OVRPlayerController_t6DEB1668590462765911AEAB2DA399DA8BD99575* ___player_10;
 	// PlayerControllerPers Locomotion::playerPers
-	PlayerControllerPers_tAAB7B6E10C936A234426E7FD4B3F4592144C8F4D* ___playerPers_9;
+	PlayerControllerPers_tAAB7B6E10C936A234426E7FD4B3F4592144C8F4D* ___playerPers_11;
 	// UnityEngine.CharacterController Locomotion::character_controller
-	CharacterController_t847C1A2719F60547D7D6077B648D6CE2D1EF3A6A* ___character_controller_10;
+	CharacterController_t847C1A2719F60547D7D6077B648D6CE2D1EF3A6A* ___character_controller_12;
 	// UnityEngine.GameObject Locomotion::centerEyeAnchor
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___centerEyeAnchor_11;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___centerEyeAnchor_13;
 	// UnityEngine.RaycastHit Locomotion::hit
-	RaycastHit_t6F30BD0B38B56401CA833A1B87BD74F2ACD2F2B5 ___hit_12;
+	RaycastHit_t6F30BD0B38B56401CA833A1B87BD74F2ACD2F2B5 ___hit_14;
 	// System.Collections.Generic.List`1<UnityEngine.Vector3> Locomotion::positions
-	List_1_t77B94703E05C519A9010DD0614F757F974E1CD8B* ___positions_13;
+	List_1_t77B94703E05C519A9010DD0614F757F974E1CD8B* ___positions_15;
 	// UnityEngine.LineRenderer Locomotion::lineRenderer
-	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___lineRenderer_14;
+	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___lineRenderer_16;
 	// UnityEngine.Vector3 Locomotion::raycastDirection
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___raycastDirection_15;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___raycastDirection_17;
 	// UnityEngine.Vector3 Locomotion::raycastPosition
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___raycastPosition_16;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___raycastPosition_18;
 	// System.Int32 Locomotion::rayCastSpawnLimit
-	int32_t ___rayCastSpawnLimit_17;
+	int32_t ___rayCastSpawnLimit_19;
 	// System.Single Locomotion::rayCastLength
-	float ___rayCastLength_18;
+	float ___rayCastLength_20;
 	// System.Single Locomotion::gravity
-	float ___gravity_19;
+	float ___gravity_21;
 	// System.Single Locomotion::smooth
-	float ___smooth_20;
+	float ___smooth_22;
 	// System.Int32 Locomotion::amountOfRaycastsSpawned
-	int32_t ___amountOfRaycastsSpawned_21;
+	int32_t ___amountOfRaycastsSpawned_23;
 	// System.Single Locomotion::rayCastEnlargorFactor
-	float ___rayCastEnlargorFactor_22;
+	float ___rayCastEnlargorFactor_24;
 	// System.Single Locomotion::time
-	float ___time_23;
+	float ___time_25;
 	// System.Single Locomotion::fade_time
-	float ___fade_time_24;
+	float ___fade_time_26;
 	// System.Boolean Locomotion::teleportation_locked
-	bool ___teleportation_locked_25;
+	bool ___teleportation_locked_27;
 	// UnityEngine.Vector3 Locomotion::target_point
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___target_point_26;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___target_point_28;
 };
 
 // LocomotionController
@@ -49436,9 +49440,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5199[4] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5201[3] = 
 {
 	static_cast<int32_t>(sizeof(RuntimeObject)),0,0,};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5202[23] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5202[25] = 
 {
-	static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___controllerType_4)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___maximumTeleportationDistance_5)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___markerPrefab_6)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___marker_prefab_instanciated_7)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___player_8)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___playerPers_9)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___character_controller_10)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___centerEyeAnchor_11)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___hit_12)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___positions_13)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___lineRenderer_14)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___raycastDirection_15)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___raycastPosition_16)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___rayCastSpawnLimit_17)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___rayCastLength_18)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___gravity_19)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___smooth_20)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___amountOfRaycastsSpawned_21)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___rayCastEnlargorFactor_22)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___time_23)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___fade_time_24)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___teleportation_locked_25)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___target_point_26)),};
+	static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___controllerType_4)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___RedlineRendererMaterial_5)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___GreenlineRendererMaterial_6)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___maximumTeleportationDistance_7)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___markerPrefab_8)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___marker_prefab_instanciated_9)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___player_10)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___playerPers_11)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___character_controller_12)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___centerEyeAnchor_13)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___hit_14)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___positions_15)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___lineRenderer_16)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___raycastDirection_17)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___raycastPosition_18)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___rayCastSpawnLimit_19)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___rayCastLength_20)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___gravity_21)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___smooth_22)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___amountOfRaycastsSpawned_23)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___rayCastEnlargorFactor_24)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___time_25)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___fade_time_26)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___teleportation_locked_27)),static_cast<int32_t>(offsetof(Locomotion_tE4721FBADA893DFFFCA822D84AD8974A3DB573E0, ___target_point_28)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5203[4] = 
 {
 	static_cast<int32_t>(offsetof(ObjectGrabbable_tC71B0C6DEAB9386134ED8BA660506687DBC07FDC, ___grabbingRadius_4)),static_cast<int32_t>(offsetof(ObjectGrabbable_tC71B0C6DEAB9386134ED8BA660506687DBC07FDC, ___available_5)),static_cast<int32_t>(offsetof(ObjectGrabbable_tC71B0C6DEAB9386134ED8BA660506687DBC07FDC, ___attachedGrabber_6)),static_cast<int32_t>(offsetof(ObjectGrabbable_tC71B0C6DEAB9386134ED8BA660506687DBC07FDC, ___initialParent_7)),};

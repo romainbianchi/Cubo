@@ -4812,15 +4812,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerType: 1
+  RedlineRendererMaterial: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+  GreenlineRendererMaterial: {fileID: 2100000, guid: 7c4cb74859e3649039e10812483f4ca0, type: 2}
   maximumTeleportationDistance: 15
   markerPrefab: {fileID: 2241463758428916479, guid: 2b99c98db70de4a10b218193a43b402f, type: 3}
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
   centerEyeAnchor: {fileID: 1207587833}
-  rayCastSpawnLimit: 300
-  rayCastLength: 0.05
+  rayCastSpawnLimit: 1000
+  rayCastLength: 0.06
   gravity: 9.81
-  smooth: 0.0008
+  smooth: 0.001
   rayCastEnlargorFactor: 3
 --- !u!114 &1207587849
 MonoBehaviour:
@@ -4835,12 +4837,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerType: 0
+  RedlineRendererMaterial: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+  GreenlineRendererMaterial: {fileID: 2100000, guid: 7c4cb74859e3649039e10812483f4ca0, type: 2}
   maximumTeleportationDistance: 15
   markerPrefab: {fileID: 2241463758428916479, guid: 2b99c98db70de4a10b218193a43b402f, type: 3}
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
   centerEyeAnchor: {fileID: 1207587833}
-  rayCastSpawnLimit: 500
+  rayCastSpawnLimit: 1000
   rayCastLength: 0.06
   gravity: 9.81
   smooth: 0.001
