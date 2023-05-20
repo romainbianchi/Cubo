@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class ButtonVR : MonoBehaviour
 {
+    // Differenciate desk button from Cubo button
+    public enum ButtonType { DeskButton, CuboButton }
+    public ButtonType buttonType;
 
     public GameObject button;
     public UnityEvent onPress;
@@ -12,10 +15,36 @@ public class ButtonVR : MonoBehaviour
     GameObject presser;
     bool isPressed;
 
+    // Check if player can press the button
+    public PlayerControllerPers playerController;
+
+    // Materials for the button
+    public Material redButtonMaterial;
+    public Material greenButtonMaterial;
+
     // Start is called before the first frame update
     void Start()
     {
         isPressed = false;
+
+        // Set the button material to green
+        button.GetComponent<Renderer>().material = greenButtonMaterial;
+    }
+
+    void Update()
+    {
+        // Button is always green
+        button.GetComponent<Renderer>().material = greenButtonMaterial;
+        
+        // Only if the button is the desk button
+        if(!(buttonType == ButtonType.DeskButton)) return;
+        
+        // Only if cubo is not stable
+        if(playerController.getCuboIsStable()) return;
+
+        // Press gets red
+        button.GetComponent<Renderer>().material = redButtonMaterial;
+        
     }
 
     // On trigger enter

@@ -82,6 +82,10 @@ public class PlayerControllerPers : MonoBehaviour
         cuboIsStable = state;
     }
 
+    public bool getCuboIsStable()
+    {
+        return cuboIsStable;
+    }
 
 	void Start () 
     { 

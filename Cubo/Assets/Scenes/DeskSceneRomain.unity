@@ -792,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707263916918458429, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Size.y
-      value: 0.00090540404
+      value: 0.0006684719
       objectReference: {fileID: 0}
     - target: {fileID: 707263916918458429, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Size.z
@@ -800,11 +800,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707263916918458429, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.x
-      value: -5.7599614e-10
+      value: -6.0350286e-10
       objectReference: {fileID: 0}
     - target: {fileID: 707263916918458429, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.y
-      value: -0.00209671
+      value: -0.0022151761
       objectReference: {fileID: 0}
     - target: {fileID: 707263916918458429, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.z
@@ -812,7 +812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4754763311581354408, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Size.y
-      value: 0.0008585414
+      value: 0.00067402376
       objectReference: {fileID: 0}
     - target: {fileID: 4754763311581354408, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Size.z
@@ -820,11 +820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4754763311581354408, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.x
-      value: -4.0850043e-10
+      value: -4.3754392e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4754763311581354408, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.y
-      value: 0.0021201433
+      value: 0.002212402
       objectReference: {fileID: 0}
     - target: {fileID: 4754763311581354408, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.z
@@ -832,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4960314128666645391, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Size.x
-      value: 0.00082526886
+      value: 0.0005713548
       objectReference: {fileID: 0}
     - target: {fileID: 4960314128666645391, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Size.z
@@ -840,15 +840,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4960314128666645391, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.x
-      value: 0.0021067562
+      value: 0.0022337136
       objectReference: {fileID: 0}
     - target: {fileID: 4960314128666645391, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.y
-      value: -1.518572e-16
+      value: -1.1585768e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4960314128666645391, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
       propertyPath: m_Center.z
-      value: -0.0019910687
+      value: -0.001991069
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65100001906882716, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
@@ -1238,6 +1238,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4104006745553797122, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
     - target: {fileID: 4104006745553797123, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1314,6 +1318,18 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
     - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -3284,8 +3300,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.8251543, y: 1.8312255, z: 1.9763054}
+  m_Center: {x: -0.009072452, y: 0.012396172, z: -0.2017338}
 --- !u!4 &735462869
 Transform:
   m_ObjectHideFlags: 0
@@ -4136,8 +4152,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0008577903, y: 0.0050988253, z: 0.0059525385}
-  m_Center: {x: -0.0021205232, y: -4.9583407e-11, z: -0.0019910682}
+  m_Size: {x: 0.00069264305, y: 0.0050988253, z: 0.005952539}
+  m_Center: {x: -0.0022030966, y: 5.759187e-17, z: -0.0019910687}
 --- !u!1001 &1091928528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7999,6 +8015,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 906724443828098544, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 906724443828098544, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 906724443828098544, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 906724443828098544, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 906724443828098544, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -8027,6 +8059,22 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1485339099122915803, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485339099122915803, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 1485339099122915803, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 1485339099122915803, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 1485339099122915803, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -8054,6 +8102,154 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TpPlayerInDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControllerPers, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TpPlayerInDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControllerPers, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316620952486645893, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TpPlayerInDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControllerPers, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794562964335502372, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794562964335502372, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 4794562964335502372, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 4794562964335502372, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
     - target: {fileID: 4794562964335502372, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -8090,6 +8286,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: InsideCube
       objectReference: {fileID: 0}
+    - target: {fileID: 6722212360531678487, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722212360531678487, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 6722212360531678487, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 6722212360531678487, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
     - target: {fileID: 6722212360531678487, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -8161,6 +8373,138 @@ PrefabInstance:
     - target: {fileID: 7072977202708504486, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TpPlayerInDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControllerPers, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TpPlayerInDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControllerPers, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: buttonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: redButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: greenButtonMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858034999}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TpPlayerInDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControllerPers, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241138026155404047, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ae242fc61084577a398062c91f1630, type: 3}
