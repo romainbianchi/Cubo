@@ -6,7 +6,7 @@ public class DistanceGrabbable : MonoBehaviour
 {
     // Material when the object is pointed
     public Material pointedMaterial;
-    private Material savedMaterial;
+    private Material originMaterial;
     private bool pointed = false;
     
 
@@ -32,11 +32,11 @@ public class DistanceGrabbable : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Grabbable");
 
         // Set the material as the saved material
-        savedMaterial = GetComponent<Renderer>().material;
+        originMaterial = GetComponent<Renderer>().material;
     }
 
     // When the object is grasped: set the anchor as the child of the hand
-    public void AttachTo(DistanceGrabber grabbedBy)
+    public void AttachTo(DistanceGrabber grabbedBy, Vector3 hitPoint)
     {
         // Set the availability to false
         available = false;
@@ -47,8 +47,11 @@ public class DistanceGrabbable : MonoBehaviour
         // Set the parent of the anchor to the hand
         transform.SetParent(grabbedBy.transform);
 
+        // Offset the position of the anchor to the hit point
+        Vector3 offset = transform.position - hitPoint;
+
         // Set position to the hand + forward offset
-        transform.position = grabbedBy.transform.position + grabbedBy.transform.forward * 0.05f;
+        transform.position = grabbedBy.transform.position + offset;
 
         // Set the object as kinematic
         GetComponent<Rigidbody>().isKinematic = true;
@@ -90,8 +93,8 @@ public class DistanceGrabbable : MonoBehaviour
 
         if (pointed)
         {
-            // Save the current material
-            savedMaterial = GetComponent<Renderer>().material;
+            // Paint only if the object is available
+            if (!available) return;            
 
             // Set the material as the pointed material
             GetComponent<Renderer>().material = pointedMaterial;
@@ -99,7 +102,7 @@ public class DistanceGrabbable : MonoBehaviour
         else
         {
             // Set the material as the saved material
-            GetComponent<Renderer>().material = savedMaterial;
+            GetComponent<Renderer>().material = originMaterial;
         }
     }
 
