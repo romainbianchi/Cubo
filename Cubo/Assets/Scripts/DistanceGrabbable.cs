@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DistanceGrabbable : MonoBehaviour
 {
-    // First set the grabbing radius of the anchor
-    public float grabbingRadius = 0.1f;
+    // Material when the object is pointed
+    public Material pointedMaterial;
+    private Material savedMaterial;
+    private bool pointed = false;
+    
 
     // Then set the availability of the anchor
     private bool available;
@@ -27,6 +30,9 @@ public class DistanceGrabbable : MonoBehaviour
 
         // Set the layer as "Grabbable"
         gameObject.layer = LayerMask.NameToLayer("Grabbable");
+
+        // Set the material as the saved material
+        savedMaterial = GetComponent<Renderer>().material;
     }
 
     // When the object is grasped: set the anchor as the child of the hand
@@ -42,7 +48,7 @@ public class DistanceGrabbable : MonoBehaviour
         transform.SetParent(grabbedBy.transform);
 
         // Set position to the hand + forward offset
-        transform.position = grabbedBy.transform.position + grabbedBy.transform.forward * grabbingRadius;
+        transform.position = grabbedBy.transform.position + grabbedBy.transform.forward * 0.05f;
 
         // Set the object as kinematic
         GetComponent<Rigidbody>().isKinematic = true;
@@ -78,5 +84,24 @@ public class DistanceGrabbable : MonoBehaviour
             GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
         }
     }
+
+    public void IsPointed(bool state){
+        pointed = state;
+
+        if (pointed)
+        {
+            // Save the current material
+            savedMaterial = GetComponent<Renderer>().material;
+
+            // Set the material as the pointed material
+            GetComponent<Renderer>().material = pointedMaterial;
+        }
+        else
+        {
+            // Set the material as the saved material
+            GetComponent<Renderer>().material = savedMaterial;
+        }
+    }
+
 }
     

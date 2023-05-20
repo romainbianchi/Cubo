@@ -17,6 +17,9 @@ public class DistanceGrabber : MonoBehaviour
     // be made static to prevent having the same list stored in each Hand Controller instance.
     static protected DistanceGrabbable[] objectsGrabbable = null;
 
+    // Store the object pointed by the player
+    protected GameObject pointedObject = null;
+
     private LineRenderer lineRenderer;
 
     // Player
@@ -42,25 +45,43 @@ public class DistanceGrabber : MonoBehaviour
         HandleGrabBehaviour();
     }
 
-    // Check if the player is aiming at an object
-    bool Aim(out Vector3 target)
+    bool Aim()
     {
-        
-        target = new Vector3();
-
         if (grabbedObject != null) return false;
 
-        if (controllerType == ControllerType.LeftController && !OVRInput.Get(OVRInput.Button.Four)) return false;
-        if (controllerType == ControllerType.RightController && !OVRInput.Get(OVRInput.Button.Two)) return false;
+        // Check if the player is pressing button 2 or 4
+        if (controllerType == ControllerType.LeftController) return OVRInput.Get(OVRInput.Button.Four);
+        if (controllerType == ControllerType.RightController) return OVRInput.Get(OVRInput.Button.Two);
+
+        return false;
+    }
+
+    // Check if the player is aiming at an object
+    bool RayHit(out Vector3 target)
+    {
+        target = Vector3.zero;
 
         // Launch the ray cast and leave if it doesn't hit anything
         RaycastHit hit;
         if (!Physics.Raycast(transform.position, transform.forward, out hit, maximumGrabDistance)) return false;
 
-        // "Output" the target point
+        // Save the hit point
         target = hit.point;
-
+        
+        // Check if the object is too far
         if (hit.distance > maximumGrabDistance) return false;
+
+        // Check if an grabbable object is hit
+        if (hit.collider.gameObject.GetComponent<DistanceGrabbable>() == null) return false;
+
+        // Save the object hit
+        pointedObject = hit.collider.gameObject;
+
+        // Check if the object is available
+        if (!pointedObject.GetComponent<DistanceGrabbable>().IsAvailable()) return false;
+
+        // Set the object as pointed
+        pointedObject.GetComponent<DistanceGrabbable>().IsPointed(true);
 
         return true;
 
@@ -91,8 +112,8 @@ public class DistanceGrabber : MonoBehaviour
         return false;
     }
 
-    // Display a ray out from the controller
-    void DisplayRay(Vector3 target)
+    // Display a ray out from the controller forward
+    void DisplayRay(Vector3 hitPoint)
     {
         // Enable the line renderer
         lineRenderer.enabled = true;
@@ -102,51 +123,42 @@ public class DistanceGrabber : MonoBehaviour
 
         // Set the starting and ending points of the line
         lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, target);
+
+        // If the ray hit something, then set the end of the line to the hit point
+        if (hitPoint != Vector3.zero) lineRenderer.SetPosition(1, hitPoint);
+
+        // Else set the end of the line to the maximum distance
+        else lineRenderer.SetPosition(1, transform.position + transform.forward * maximumGrabDistance);
 	}
-
-    void SpawnSphere()
-    {
-        // Spawn a sphere 1m in front of the controller
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = transform.position + transform.forward/5;
-
-        // Scale the sphere by 10%
-        sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-         
-        // Add a rigidbody to the sphere
-        Rigidbody rb = sphere.AddComponent<Rigidbody>();
-        rb.mass = 0.1f;
-        rb.useGravity = true;
-
-        // Throw the sphere forward
-        rb.AddForce(transform.forward * 30);
-
-        // Add a collider to the sphere
-        SphereCollider sc = sphere.AddComponent<SphereCollider>();
-        sc.radius = 0.01f;
-    }
 
     // We want to save the anchor that is being grasped
     protected DistanceGrabbable grabbedObject = null;
 
     void HandleGrabBehaviour()
     {
-        if (Aim(out Vector3 target)){
+        if (Aim()){
 
-            // Display the ray
-            DisplayRay(target);
+            lineRenderer.enabled = true;
 
-            // Grab the object if the hand is closing
-            if (HandClosing()) GrabObject(target);
+            Vector3 hitPoint = Vector3.zero;
 
-            // Update state
-            if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.DistanceGrabbing);
-            if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.DistanceGrabbing);
+            if (RayHit(out hitPoint))
+            {
+                // Grab the object if the hand is closing
+                if (HandClosing()) GrabObject();
+
+                // Update state
+                if (controllerType == ControllerType.LeftController) playerPers.setLeftState(PlayerControllerPers.State.DistanceGrabbing);
+                if (controllerType == ControllerType.RightController) playerPers.setRightState(PlayerControllerPers.State.DistanceGrabbing);
+            }
+            
+            DisplayRay(hitPoint);
+
         } else {
-
-            // Disable the line renderer
             lineRenderer.enabled = false;
+            
+            // Set all objects as not pointed
+            foreach (DistanceGrabbable obj in objectsGrabbable) obj.IsPointed(false);
             
             // Release the object if the hand is opening
             if (HandOpening()) ReleaseObject();
@@ -159,32 +171,11 @@ public class DistanceGrabber : MonoBehaviour
         }
     }
 
-    void GrabObject(Vector3 target){
-
-        // Determine which object available is the closest from the target
-        float minDistance = float.MaxValue;
-        DistanceGrabbable closestObject = null;
-        foreach (DistanceGrabbable objectGrabbable in objectsGrabbable)
-        {
-            // Skip if the object is not available
-            if (!objectGrabbable.IsAvailable()) continue;
-
-            // Compute the distance between the object and the hand
-            float distance = Vector3.Distance(objectGrabbable.transform.position, target);
-
-            // If the hand is in the grasping radius of the object, and the distance is smaller than the previous one
-            if (distance < objectGrabbable.grabbingRadius && distance < minDistance)
-            {
-                // Then save the object as the closest one
-                closestObject = objectGrabbable;
-                // And save the distance as the new minimum distance
-                minDistance = distance;
-            }
-        }
+    void GrabObject(){
         // If there is a closest object
-        if (closestObject != null) {
+        if (pointedObject != null) {
             // Then save it as the grasped anchor
-            grabbedObject = closestObject;
+            grabbedObject = pointedObject.GetComponent<DistanceGrabbable>();
             // And attach the anchor to the hand
             grabbedObject.AttachTo(this);
         }
