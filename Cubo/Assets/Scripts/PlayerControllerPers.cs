@@ -27,10 +27,7 @@ public class PlayerControllerPers : MonoBehaviour
         if (!cuboIsStable) return;
         this.GetComponent<CharacterController>().enabled = false;
         transform.position = inCuboPos.transform.position;
-        this.GetComponent<CharacterController>().enabled = true;
-
-        // Set all of the object of type Grabbable and distance grabbable to dynamic (BUG A REVOIR: LUDO)
-        // SetCuboObjectsKinematic(false);          
+        this.GetComponent<CharacterController>().enabled = true;            
     }
 
     public void TpPlayerInDesk()
@@ -39,9 +36,6 @@ public class PlayerControllerPers : MonoBehaviour
         this.GetComponent<CharacterController>().enabled = false;
         transform.position = inDeskPos.transform.position;
         this.GetComponent<CharacterController>().enabled = true;
-
-        // Set all of the object of type Grabbable and distance grabbable to kinematic (BUG A REVOIR: LUDO)
-        // SetCuboObjectsKinematic(true);
     }
 
     // Set and get Tp pointing states
@@ -103,37 +97,10 @@ public class PlayerControllerPers : MonoBehaviour
 
 	void Start () 
     { 
-        
-        // Find all gameobjects with script ObjectGrabbable (BUG A REVOIR: LUDO)
-        // objectsGrabbable = GameObject.FindGameObjectsWithTag("Grabbable");
-
-        // Set all of the object of type Grabbable and distance grabbable to kinematic
-        // SetCuboObjectsKinematic(true);
     }
 
     void Update()
     {
-        inCubo = (transform.position.x > 3.5f);        
+        inCubo = (transform.position.x > 3.5f);
     } 
-
-
-
-    // BUG A REVOIR: LUDO
-    // EN GROS JE VOULAIS SET STATIC LES OBJETS DANS CUBO QUAND ON TP DANS LE DESK,
-    // ET LES REMETTRE EN DYNAMIC QUAND ON TP DANS CUBO MAIS CA MARCHE PAS TROP TROP,
-    // CA FAIT BUGGER LE BOUTON POUR AUCUNE RAISON, JARRIVE PAS A VOIR D'OU CA VIENT
-
-
-    // GameObject[] objectsGrabbable;
-    // void SetCuboObjectsKinematic(bool state)
-    // {
-    //     // Set all of the object of layer Grabbable to kinematic
-    //     foreach (GameObject obj in objectsGrabbable)
-    //     {
-    //         // If the obejct is not available, skip it
-    //         if (obj.GetComponent<ObjectGrabbable>().IsAvailable() == false) continue;
-            
-    //         if (obj.transform.position.x > 3.5f) obj.GetComponent<Rigidbody>().isKinematic = state;
-    //     }
-    // }
 }
