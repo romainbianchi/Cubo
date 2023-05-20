@@ -4829,8 +4829,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerType: 1
   RedlineRendererMaterial: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
-  GreenlineRendererMaterial: {fileID: 2100000, guid: 7c4cb74859e3649039e10812483f4ca0, type: 2}
-  maximumTeleportationDistance: 15
+  GreenlineRendererMaterial: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+  GreenMarker: {fileID: 2100000, guid: 92e01b88a6f1cea429baa6d7b5e7f8e8, type: 2}
+  RedMarker: {fileID: 2100000, guid: db1faafe785830643b94b9c4e9e0a8e2, type: 2}
+  TransparentRed: {fileID: 2100000, guid: 0f3f2a8146652f247835a32775df92bc, type: 2}
+  TransparentGreen: {fileID: 2100000, guid: eec24b8f9e5b4e04a9e9777befe4f432, type: 2}
+  maximumTeleportationDistance: 9
   markerPrefab: {fileID: 2241463758428916479, guid: 2b99c98db70de4a10b218193a43b402f, type: 3}
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
@@ -4854,8 +4858,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerType: 0
   RedlineRendererMaterial: {fileID: 2100000, guid: 0e69c22f4c5132149824ef6da4d51ad1, type: 2}
-  GreenlineRendererMaterial: {fileID: 2100000, guid: 7c4cb74859e3649039e10812483f4ca0, type: 2}
-  maximumTeleportationDistance: 15
+  GreenlineRendererMaterial: {fileID: 2100000, guid: 292dfa6ac11685a45a3b844969ebd34c, type: 2}
+  GreenMarker: {fileID: 2100000, guid: 92e01b88a6f1cea429baa6d7b5e7f8e8, type: 2}
+  RedMarker: {fileID: 2100000, guid: db1faafe785830643b94b9c4e9e0a8e2, type: 2}
+  TransparentRed: {fileID: 2100000, guid: 0f3f2a8146652f247835a32775df92bc, type: 2}
+  TransparentGreen: {fileID: 2100000, guid: eec24b8f9e5b4e04a9e9777befe4f432, type: 2}
+  maximumTeleportationDistance: 9
   markerPrefab: {fileID: 2241463758428916479, guid: 2b99c98db70de4a10b218193a43b402f, type: 3}
   player: {fileID: 1858034995}
   playerPers: {fileID: 1858034999}
@@ -6670,7 +6678,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 575abeec441de4040a26df64ba5e99af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6707,7 +6715,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881297517}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.0002617804, z: 0, w: 1}
   m_LocalPosition: {x: -0.17503104, y: 5.39, z: 0.07916669}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 0.5000001}
   m_ConstrainProportionsScale: 1
@@ -6718,7 +6726,7 @@ Transform:
   - {fileID: 1091928529}
   m_Father: {fileID: 81166582}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.03, z: 0}
 --- !u!114 &1881297525
 MonoBehaviour:
   m_ObjectHideFlags: 0

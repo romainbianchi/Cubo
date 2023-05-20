@@ -38,9 +38,16 @@ public class DistanceGrabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If the player is not in cubo, return
+        if (!playerPers.isInCubo()) {
+            lineRenderer.enabled = false;
+            return;
+        }
+
         // State check
         if (controllerType == ControllerType.LeftController && (playerPers.getLeftState() == PlayerControllerPers.State.Grabbing || playerPers.getLeftState() == PlayerControllerPers.State.Locomotion || playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing)) return;
         if (controllerType == ControllerType.RightController && (playerPers.getRightState() == PlayerControllerPers.State.Grabbing || playerPers.getRightState() == PlayerControllerPers.State.Locomotion || playerPers.getRightState() == PlayerControllerPers.State.TpOnGoing)) return;
+        
         // At each frame, handle the controller grasp behaviour
         HandleGrabBehaviour();
     }

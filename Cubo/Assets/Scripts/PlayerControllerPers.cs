@@ -17,6 +17,9 @@ public class PlayerControllerPers : MonoBehaviour
     private bool left_tp_pointing = false;
     private bool right_tp_pointing = false;
     private bool cuboIsStable = false;
+
+    // Check if the player is in cubo
+    private bool inCubo = false;
     
     public void TpPlayerInCubo()
     {
@@ -87,12 +90,17 @@ public class PlayerControllerPers : MonoBehaviour
         return cuboIsStable;
     }
 
+    public bool isInCubo()
+    {
+        return inCubo;
+    }
+
 	void Start () 
     { 
     }
 
     void Update()
     {
-        
+        inCubo = (transform.position.x > 3.5f);
     } 
 }

@@ -11,9 +11,13 @@ public class Locomotion : MonoBehaviour
     public ControllerType controllerType = ControllerType.LeftController;
 
 
-    [Header( "Materials of line renderer")]
+    [Header( "Materials")]
     public Material RedlineRendererMaterial;
     public Material GreenlineRendererMaterial;
+    public Material GreenMarker;
+    public Material RedMarker;
+    public Material TransparentRed;
+    public Material TransparentGreen;
 
     [Header( "Maximum Distance" )]
 	[Range( 2f, 30f )]
@@ -21,35 +25,33 @@ public class Locomotion : MonoBehaviour
 	public float maximumTeleportationDistance = 15f;
 
 
-    [Header( "Marker" )]
+    [Header( "Teleportation" )]
 	// Store the refence to the marker prefab used to highlight the targeted point
 	public GameObject markerPrefab;
 	protected GameObject marker_prefab_instanciated;
+    private bool not_place_for_player = false;
 
 
-    // Player
     [Header("Player")]
     public OVRPlayerController player;
     public PlayerControllerPers playerPers;
     private CharacterController character_controller;
 
 
+    [Header("Fade")]
     // To fade screen
     public GameObject centerEyeAnchor;
 
 
     //Point de contact avec le sol
     public RaycastHit hit;
-
-
     //Raycast parameters
     private List<Vector3> positions;
     private LineRenderer lineRenderer;
     private Vector3 raycastDirection;
     private Vector3 raycastPosition;
-
    
-    //Settings
+   [Header("Raycast parameters")]
     public int rayCastSpawnLimit = 200;
     public float rayCastLength = 0.1f;
     public float gravity = 7.5f;
@@ -70,19 +72,25 @@ public class Locomotion : MonoBehaviour
         fade_time = centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime;
 
         lineRenderer = GetComponent<LineRenderer>(); 
+
     }
 
 
-    // Keep track of the teleportation state to prevent continuous teleportation
-	protected bool teleportation_locked = false;
-
-    // Store Tp target point
+    // Store the target point
     protected Vector3 target_point;
 
 
     // Update is called once per frame
     void Update()
     {
+
+        // Check if the player is inside the cube
+        if (!playerPers.isInCubo()) {
+            if( marker_prefab_instanciated != null) Destroy(marker_prefab_instanciated);
+            marker_prefab_instanciated = null;
+            lineRenderer.enabled = false;
+            return;
+        }
 
         // Player is teleporting
         if (controllerType == ControllerType.LeftController && playerPers.getLeftState() == PlayerControllerPers.State.TpOnGoing) {
@@ -125,23 +133,34 @@ public class Locomotion : MonoBehaviour
                 {
 
                     // Instantiate the marker prefab if it doesn't already exists and place it to the targeted position
-                    if ( marker_prefab_instanciated == null ) marker_prefab_instanciated = GameObject.Instantiate( markerPrefab, this.transform );
+                    if ( marker_prefab_instanciated == null ){ 
+                        marker_prefab_instanciated = GameObject.Instantiate( markerPrefab, this.transform );
+                        marker_prefab_instanciated.transform.GetChild(1).GetComponent<TpCollider>().setLocomotion(this);
+                        
+                    }
+                    // Set target point
                     marker_prefab_instanciated.transform.position = target_point;
+                    // Lock the rotation of the marker 
+                    marker_prefab_instanciated.transform.rotation = Quaternion.identity;
 
                     // Set the material to red
                     lineRenderer.material = RedlineRendererMaterial;
 
                     // Set the marker prefab to red
-                    marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.red;
+                    marker_prefab_instanciated.GetComponent<Renderer>().material = RedMarker;
+                    marker_prefab_instanciated.transform.GetChild(0).GetComponent<Renderer>().material = TransparentRed;
 
                     // Check if the player is too far from the target point
                     if (Vector3.Distance(player.transform.position, target_point) > maximumTeleportationDistance) return;
+
+                    if (not_place_for_player) return;
                     
                     // Set the material to green
                     lineRenderer.material = GreenlineRendererMaterial;
 
                     // Set the marker prefab to green
-                    marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.green;
+                    marker_prefab_instanciated.transform.GetChild(0).GetComponent<Renderer>().material = TransparentGreen;
+                    marker_prefab_instanciated.GetComponent<Renderer>().material = GreenMarker;
 
                     if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                     {
@@ -168,6 +187,9 @@ public class Locomotion : MonoBehaviour
                 marker_prefab_instanciated = null;
                 lineRenderer.enabled = false;
 
+                // update the not_place_for_player state
+                not_place_for_player = false;
+
             }
 
         }
@@ -192,23 +214,31 @@ public class Locomotion : MonoBehaviour
                 {
 
                     // Instantiate the marker prefab if it doesn't already exists and place it to the targeted position
-                    if ( marker_prefab_instanciated == null ) marker_prefab_instanciated = GameObject.Instantiate( markerPrefab, this.transform );
+                    if ( marker_prefab_instanciated == null ){ 
+                        marker_prefab_instanciated = GameObject.Instantiate( markerPrefab, this.transform );
+                        marker_prefab_instanciated.transform.GetChild(1).GetComponent<TpCollider>().setLocomotion(this);
+                        
+                    }
+                    // Set target point
                     marker_prefab_instanciated.transform.position = target_point;
-
-                    // Set the material to red
+                    // Lock the rotation of the marker 
+                    marker_prefab_instanciated.transform.rotation = Quaternion.identity;
+                    
+                    // Set the marker to red
                     lineRenderer.material = RedlineRendererMaterial;
-
-                    // Set the marker prefab to red
-                    marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.red;
+                    marker_prefab_instanciated.GetComponent<Renderer>().material = RedMarker;
+                    marker_prefab_instanciated.transform.GetChild(0).GetComponent<Renderer>().material = TransparentRed;
 
                     // Check if the player is too far from the target point
                     if (Vector3.Distance(player.transform.position, target_point) > maximumTeleportationDistance) return;
-                    
-                    // Set the material to green
-                    lineRenderer.material = GreenlineRendererMaterial;
 
-                    // Set the marker prefab to green
-                    marker_prefab_instanciated.GetComponent<Renderer>().material.color = Color.green;
+                    // check if there's enough space for the player
+                    if (not_place_for_player) return;
+                    
+                    // Set the marker to green
+                    lineRenderer.material = GreenlineRendererMaterial;
+                    marker_prefab_instanciated.GetComponent<Renderer>().material = GreenMarker;
+                    marker_prefab_instanciated.transform.GetChild(0).GetComponent<Renderer>().material = TransparentGreen;
 
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
@@ -236,6 +266,9 @@ public class Locomotion : MonoBehaviour
                 marker_prefab_instanciated = null;
                 lineRenderer.enabled = false;
 
+                // update the not_place_for_player state
+                not_place_for_player = false;
+
             }
         }
 
@@ -247,8 +280,10 @@ public class Locomotion : MonoBehaviour
         // update time
         time += Time.deltaTime;
 
-        // Fixed marker position
-        marker_prefab_instanciated.transform.position = target_point;        
+        // Lock the position of the marker
+        marker_prefab_instanciated.transform.position = target_point;
+        // Lock the rotation of the marker 
+        marker_prefab_instanciated.transform.rotation = Quaternion.identity;        
 
         // if fade out is finished
         if (end_fade()){
@@ -320,7 +355,7 @@ public class Locomotion : MonoBehaviour
         {
             positions.Add(raycastPosition);
 
-            // Si le raycast touche un objet, on arrete le raycast
+            // Si le raycast touche un objet, on arrete le raycast (sauf si c'est un objet ignore raycast)
             if (Physics.Raycast(raycastPosition, raycastDirection, out hit, rayCastEnlargorFactor*rayCastLength))
             {
                 positions.Add(hit.point);
@@ -342,6 +377,12 @@ public class Locomotion : MonoBehaviour
         if (time > fade_time) return true;
 
         return false;
+    }
+
+    public void set_not_place_for_player(bool state){
+
+        not_place_for_player = state;
+
     }
 
 }
