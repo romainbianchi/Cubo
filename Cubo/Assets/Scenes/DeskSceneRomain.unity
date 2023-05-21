@@ -6961,6 +6961,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1416145365948456350, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1635214967661622689, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: playerController
       value: 
@@ -6977,6 +6981,14 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858034999}
+    - target: {fileID: 2679661118946982074, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481398628424743934, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3838811219494097857, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: playerController
       value: 
@@ -7037,6 +7049,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7137769771821184431, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7356674136470396304, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: playerController
       value: 
@@ -7045,6 +7061,10 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858034999}
+    - target: {fileID: 7546696003402179104, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: playerController
       value: 
@@ -7061,6 +7081,10 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858034999}
+    - target: {fileID: 8595186630221349680, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ae242fc61084577a398062c91f1630, type: 3}
 --- !u!1 &4949822336175797648 stripped
