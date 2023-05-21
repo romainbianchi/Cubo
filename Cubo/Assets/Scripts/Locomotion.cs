@@ -154,6 +154,9 @@ public class Locomotion : MonoBehaviour
                     if (Vector3.Distance(player.transform.position, target_point) > maximumTeleportationDistance) return;
 
                     if (not_place_for_player) return;
+
+                    // If the layer of the hit point is "sky", return
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Sky")) return;
                     
                     // Set the material to green
                     lineRenderer.material = GreenlineRendererMaterial;
@@ -234,6 +237,9 @@ public class Locomotion : MonoBehaviour
 
                     // check if there's enough space for the player
                     if (not_place_for_player) return;
+
+                    // If the layer of the hit point is "sky", return
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Sky")) return;
                     
                     // Set the marker to green
                     lineRenderer.material = GreenlineRendererMaterial;
