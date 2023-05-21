@@ -87,4 +87,24 @@ public class SmallCuboBehaviour : MonoBehaviour
             || eulerRotationAbs.x % 90 < 1f && eulerRotationAbs.z % 90 < 1f 
             || eulerRotationAbs.y % 90 < 1f && eulerRotationAbs.z % 90 < 1f;
     }
+
+    public string FaceDown(){
+
+        // Get the 6 childs of the cube (Graveyard, Grass, Island, Desert, Ice, Sky)
+        Transform[] childs = GetComponentsInChildren<Transform>();
+        
+        // For each child check which one is the lowest
+        float[] yPositions = new float[6];
+
+        for (int i = 0; i < childs.Length; i++)
+        {
+            yPositions[i] = childs[i].position.y;
+        }
+
+        // Get the index of the minimum y position
+        int index = System.Array.IndexOf(yPositions, Mathf.Min(yPositions));
+         
+        // Return the name of the child with the minimum y position
+        return childs[index].name;
+    }
 }
