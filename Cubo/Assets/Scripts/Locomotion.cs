@@ -155,8 +155,8 @@ public class Locomotion : MonoBehaviour
 
                     if (not_place_for_player) return;
 
-                    // If the layer of the hit point is "sky", return
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Sky")) return;
+                    // If the layer of the hit point is "sky or water", return
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Sky or Water")) return;
                     
                     // Set the material to green
                     lineRenderer.material = GreenlineRendererMaterial;

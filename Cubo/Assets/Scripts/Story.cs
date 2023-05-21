@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Story : MonoBehaviour
 {
+    // --------------------------------------------------------------------------------------------------------------------------- //
+    // ---------------------------------------------------- STORY PARAMETERS ----------------------------------------------------- //
+    // --------------------------------------------------------------------------------------------------------------------------- //
+
+    [Header("Story parameters")]
+
     // Activate the story
     public bool storyActivated = false;
+
+    // Activate dialogues
+    public bool dialoguesActivated = false;
 
     // Story chapters
     private enum Advancement { SpawnInDesk, FirstEnterInCubo, FirstComeBack, FirstRotateCubo, BreakWall, DistanceGrabTorch, LightTorch }
@@ -13,6 +22,21 @@ public class Story : MonoBehaviour
 
     // Keep track of the loop number in each chapter
     private int loopChapter = 0;
+
+    // Repeat the audio clips every X seconds
+    public float repeatAudioEveryXSeconds = 60.0f;   
+
+    // Keep track of the time
+    private float time = 0.0f;
+
+    // Audio source for dialogues
+    private AudioSource audioSource;
+
+    // --------------------------------------------------------------------------------------------------------------------------- //
+    // --------------------------------------------------- INTERCTABLE OBJECTS --------------------------------------------------- //
+    // --------------------------------------------------------------------------------------------------------------------------- //
+
+    [Header("Interactable objects")]
 
     // Player controller
     public PlayerControllerPers playerController;
@@ -29,6 +53,40 @@ public class Story : MonoBehaviour
     // Torch
     public GameObject torch;
 
+    // --------------------------------------------------------------------------------------------------------------------------- //
+    // -------------------------------------------------------- DIALOGUES  ------------------------------------------------------- //
+    // --------------------------------------------------------------------------------------------------------------------------- //
+
+    [Header("Dialogues (Audio clips)")]
+
+    // Voice for SpawnInDesk chapter
+    public AudioClip voiceSpawnInDesk;
+
+    // Voice for FirstEnterInCubo chapter
+    public AudioClip voiceFirstEnterInCubo;
+
+    // Voice for FirstComeBack chapter
+    public AudioClip voiceFirstComeBack;
+
+    // Voice for FirstRotateCubo chapter
+    public AudioClip voiceFirstRotateCubo;
+    public AudioClip voiceFirstRotateCuboForgotStick;
+
+    // Voice for BreakWall chapter
+    public AudioClip voiceBreakWall;
+
+    // Voice for DistanceGrabTorch chapter
+    public AudioClip voiceDistanceGrabTorch;
+
+    // Voice for LightTorch chapter
+    public AudioClip voiceLightTorch;
+
+
+
+    // --------------------------------------------------------------------------------------------------------------------------- //
+    // ----------------------------------------------------- START & UPDATE  ----------------------------------------------------- //
+    // --------------------------------------------------------------------------------------------------------------------------- //
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +94,12 @@ public class Story : MonoBehaviour
 
         // Reset the loop number
         loopChapter = 0;
+
+        // Start timer for audio clips
+        time = Time.time;
+
+        // Get the audio source
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +119,10 @@ public class Story : MonoBehaviour
         }
     }
 
+    // --------------------------------------------------------------------------------------------------------------------------- //
+    // -------------------------------------------------------- CHAPTERS  -------------------------------------------------------- //
+    // --------------------------------------------------------------------------------------------------------------------------- //
+
     //------ CHAPTER 1: Spawn in desk (learn how to enter in cubo) ------//
     void ChapSpawnInDesk()
     {
@@ -67,8 +135,10 @@ public class Story : MonoBehaviour
         // What the player can do: look at the map, listen to the voice, grab cubo, move cubo into the box
         // That's all for now, if the player presses the button with cubo in the box, we enter in the next chapter
 
-        if (loopChapter == 0) {
-            //! Voice here (TODO) to explain the situation
+        audioSource.clip = voiceSpawnInDesk;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
         }
 
         // Block cubo's rotation (except for the y axis)
@@ -81,6 +151,7 @@ public class Story : MonoBehaviour
         if (playerController.transform.position.x > 10.0f) {
             chapter = Advancement.FirstEnterInCubo;
             loopChapter = 0;
+            audioSource.Stop();
         }
     }
 
@@ -92,9 +163,11 @@ public class Story : MonoBehaviour
         // According to the map, the stick is on the top island 
         // The player is told he can tp using the VR controllers (pressing A or X + index trigger)
 
-        if (loopChapter == 0) {
-            //! Voice here (TODO) to explain the situation
-        }
+        audioSource.clip = voiceFirstEnterInCubo;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }        
 
         // Increase the loop number
         loopChapter++;
@@ -103,6 +176,7 @@ public class Story : MonoBehaviour
         if (stick.GetComponent<ObjectGrabbable>().IsAvailable() == false) {
             chapter = Advancement.FirstComeBack;
             loopChapter = 0;
+            audioSource.Stop();
         }
     }
 
@@ -116,9 +190,10 @@ public class Story : MonoBehaviour
         // if only the player could rotate cubo...
         // The player is thinking he might come back in the desk scene and has to find a way to do so (respawn terminal)
         
-
-        if (loopChapter == 0) {
-            //! Voice here (TODO) to explain the situation
+        audioSource.clip = voiceFirstComeBack;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
         }
 
         // Increase the loop number
@@ -128,6 +203,7 @@ public class Story : MonoBehaviour
         if (playerController.transform.position.x < 10.0f) {
             chapter = Advancement.FirstRotateCubo;
             loopChapter = 0;
+            audioSource.Stop();
         }
     }
 
@@ -140,14 +216,13 @@ public class Story : MonoBehaviour
         // The player has to rotate cubo to access the graveyard area
         // Once the graveyard accessed, the next chapter starts
 
-        if (loopChapter == 0) {
-            if (stick.GetComponent<ObjectGrabbable>().IsAvailable()) {
-                //! Voice here (TODO) to explain to come back with the stick
-            }
-            else {
-                //! Voice here (TODO) to explain that the player has to rotate cubo
-            }
-        } 
+        if (stick.GetComponent<ObjectGrabbable>().IsAvailable() == false) audioSource.clip = voiceFirstRotateCuboForgotStick;
+        else audioSource.clip = voiceFirstRotateCubo;
+
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
         
         // The player can now rotate cubo
         smallCubo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
@@ -161,6 +236,7 @@ public class Story : MonoBehaviour
             && smallCubo.GetComponent<SmallCuboBehaviour>().FaceDown() == "Graveyard") {
             chapter = Advancement.BreakWall;
             loopChapter = 0;
+            audioSource.Stop();
         }
     }
 
@@ -171,8 +247,10 @@ public class Story : MonoBehaviour
         // A voice explains that the player can break the wall with the stick
         // The player breaks the wall and enters in the next chapter
 
-        if (loopChapter == 0) {
-            //! Voice here (TODO) to explain that the player can break the wall
+        audioSource.clip = voiceBreakWall;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
         }
 
         // Increase the loop number
@@ -182,6 +260,8 @@ public class Story : MonoBehaviour
         // if (wall.GetComponent<WallBehaviour>().IsBroken()) {
         //     chapter = Advancement.DistanceGrabTorch;
         //     loopChapter = 0;
+        //     audioSource.Stop();
+
         // }
     }
 
@@ -193,8 +273,10 @@ public class Story : MonoBehaviour
         // A voice explains that the player can distance grab the torch (pressing B or Y + index trigger)
         // The player distance grabs the torch and enters in the next chapter
 
-        if (loopChapter == 0) {
-            //! Voice here (TODO) to explain that the player can distance grab the torch
+        audioSource.clip = voiceDistanceGrabTorch;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
         }
 
         // Increase the loop number
@@ -204,6 +286,8 @@ public class Story : MonoBehaviour
         if (torch.GetComponent<DistanceGrabbable>().IsAvailable() == false) {
             chapter = Advancement.LightTorch;
             loopChapter = 0;
+            audioSource.Stop();
+
         }
     }
 
