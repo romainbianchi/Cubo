@@ -90,21 +90,24 @@ public class SmallCuboBehaviour : MonoBehaviour
 
     public string FaceDown(){
 
-        // Get the 6 childs of the cube (Graveyard, Grass, Island, Desert, Ice, Sky)
-        Transform[] childs = GetComponentsInChildren<Transform>();
-        
-        // For each child check which one is the lowest
-        float[] yPositions = new float[6];
+        // Get the 7 children of the cube (SmallCubo, Graveyard, Grass, Island, Desert, Ice, Sky)
+        Transform[] children = GetComponentsInChildren<Transform>();
 
-        for (int i = 0; i < childs.Length; i++)
+        // For each child check which one is the lowest
+        float[] yPositions = new float[7];
+
+        for (int i = 0; i < children.Length; i++)
         {
-            yPositions[i] = childs[i].position.y;
+            yPositions[i] = children[i].position.y;
         }
 
         // Get the index of the minimum y position
         int index = System.Array.IndexOf(yPositions, Mathf.Min(yPositions));
-         
+
         // Return the name of the child with the minimum y position
-        return childs[index].name;
+        // Debug.Log(children[index].name);
+
+        // Return the name of the child with the minimum y position
+        return children[index].name;
     }
 }

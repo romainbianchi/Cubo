@@ -22,6 +22,9 @@ public class ButtonVR : MonoBehaviour
     public Material redButtonMaterial;
     public Material greenButtonMaterial;
 
+    // Small cubo
+    public GameObject smallCubo;
+
     // Start is called before the first frame update
     void Start()
     {
