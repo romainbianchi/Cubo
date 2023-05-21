@@ -16,10 +16,24 @@ public class SmallCuboBehaviour : MonoBehaviour
     // Box for cubo (to detect if the cubo is in the box or not with a collider)
     public GameObject box;
 
+    // Cubo state
+    private bool stable = false;
+
+    // Store the 6 faces of the cubo
+    private GameObject[] faces = new GameObject[6];
+    private GameObject currentFace = null;
+
+    // Bool to block sound 
+    private bool soundPlayed = false;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // Store the faces
+        for (int i = 0; i < 6; i++)
+        {
+            faces[i] = transform.GetChild(i).gameObject;
+        } 
     }
 
     // Update is called once per frame
@@ -34,8 +48,11 @@ public class SmallCuboBehaviour : MonoBehaviour
             }
         }
 
+        UpdateCurrentFace();
         UpdateCuboState();
-            
+        
+        // Debug print the current face
+        Debug.Log(FaceDown());
     }
 
     void Respawn()
@@ -65,49 +82,43 @@ public class SmallCuboBehaviour : MonoBehaviour
         bool inBox = box.GetComponent<BoxCollider>().bounds.Contains(transform.position);
 
         // If at least one face is down
-        bool oneFaceDown = IsOneFaceDown();
+        bool oneFaceDown = currentFace != null;
+
+        stable = available && immobile && inBox && oneFaceDown;
+
+        //Play sound once
+        if (stable) {
+            if (!soundPlayed) {
+                GetComponent<AudioSource>().Play();
+                soundPlayed = true;
+            }
+        } else {
+            soundPlayed = false;
+        }
 
         // Update the state of the cubo
-        playerController.setCuboIsStable(available && immobile && inBox && oneFaceDown);
+        playerController.setCuboIsStable(stable);
     }
 
-    bool IsOneFaceDown(){
+    void UpdateCurrentFace(){
 
-        // Get the rotation of the cubo
-        Quaternion rotation = transform.rotation;
+        // Which face has is up transform y <= -0.99f (upside down)
+        foreach (GameObject face in faces)
+        {
+            if (face.transform.up.y <= -0.99f)
+            {
+                currentFace = face;
+                return;
+            }
+        }
 
-        // Get the rotation of the cubo in euler angles
-        Vector3 eulerRotation = rotation.eulerAngles;
-
-        // Get the rotation of the cubo in euler angles
-        Vector3 eulerRotationAbs = new Vector3(Mathf.Abs(eulerRotation.x), Mathf.Abs(eulerRotation.y), Mathf.Abs(eulerRotation.z));
-
-        // If at least two faces are close to 0° (modulo 90°) then the cubo is on one face )
-        return eulerRotationAbs.x % 90 < 1f && eulerRotationAbs.y % 90 < 1f 
-            || eulerRotationAbs.x % 90 < 1f && eulerRotationAbs.z % 90 < 1f 
-            || eulerRotationAbs.y % 90 < 1f && eulerRotationAbs.z % 90 < 1f;
+        // If no face is down, set currentFace to null
+        currentFace = null;
     }
 
     public string FaceDown(){
+        if(currentFace == null) return null;
 
-        // Get the 7 children of the cube (SmallCubo, Graveyard, Grass, Island, Desert, Ice, Sky)
-        Transform[] children = GetComponentsInChildren<Transform>();
-
-        // For each child check which one is the lowest
-        float[] yPositions = new float[7];
-
-        for (int i = 0; i < children.Length; i++)
-        {
-            yPositions[i] = children[i].position.y;
-        }
-
-        // Get the index of the minimum y position
-        int index = System.Array.IndexOf(yPositions, Mathf.Min(yPositions));
-
-        // Return the name of the child with the minimum y position
-        // Debug.Log(children[index].name);
-
-        // Return the name of the child with the minimum y position
-        return children[index].name;
+        return currentFace.name;
     }
 }

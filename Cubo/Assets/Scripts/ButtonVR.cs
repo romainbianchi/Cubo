@@ -61,6 +61,9 @@ public class ButtonVR : MonoBehaviour
             onPress.Invoke();
             isPressed = true;
         }
+
+        // play sound
+        GetComponent<AudioSource>().Play();
     }
 
     // On trigger exit

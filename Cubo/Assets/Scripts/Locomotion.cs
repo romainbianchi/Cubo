@@ -302,6 +302,8 @@ public class Locomotion : MonoBehaviour
             character_controller.enabled = false;
             character_controller.transform.position = target_point + new Vector3(0, character_controller.height/2, 0);
             character_controller.enabled = true;
+            //Play step sound
+            playerPers.playStepSound();
             // Fade in
             centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
         }
