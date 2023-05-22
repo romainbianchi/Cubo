@@ -1736,8 +1736,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.271
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7527,6 +7527,53 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858034999}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 7419941718322702074, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419941718322702074, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419941718322702074, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546696003402179104, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: lengthInSec
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: InitialModule.startRotationX.scalar
+      value: -0.09599311
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839232250995088493, guid: 72ae242fc61084577a398062c91f1630, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 7903003619649554975, guid: 72ae242fc61084577a398062c91f1630, type: 3}
       propertyPath: playerController
       value: 

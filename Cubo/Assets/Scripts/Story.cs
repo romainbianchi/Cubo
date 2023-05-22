@@ -17,7 +17,7 @@ public class Story : MonoBehaviour
     public bool dialoguesActivated = false;
 
     // Story chapters
-    private enum Advancement { SpawnInDesk, FirstEnterInCubo, FirstComeBack, FirstRotateCubo, BreakWall, DistanceGrabTorch, LightTorch }
+    private enum Advancement { SpawnInDesk, FirstEnterInCubo, FirstComeBack, FirstRotateCubo, BreakWall, DistanceGrabTorch, LightTorch, MeltEntrance, Heated, GrabCup, TakeIce, MeltIce, PutOutFire, GrabKey, OpenChest, End}
     private Advancement chapter = Advancement.SpawnInDesk;
 
     // Keep track of the loop number in each chapter
@@ -53,17 +53,41 @@ public class Story : MonoBehaviour
     // Torch
     public GameObject torch;
 
+    // Ice entrance
+    public GameObject iceEntrance;
+
+    // Cup
+    public GameObject cup;
+
+    // Ice
+    public GameObject ice;
+
+    // Fire
+    public GameObject fire;
+
+    // Key
+    public GameObject key;
+
+    // Chest
+    public GameObject chest;
+
     // --------------------------------------------------------------------------------------------------------------------------- //
     // -------------------------------------------------------- DIALOGUES  ------------------------------------------------------- //
     // --------------------------------------------------------------------------------------------------------------------------- //
 
     [Header("Dialogues (Audio clips)")]
 
-    // Voice for SpawnInDesk chapter
-    public AudioClip voiceSpawnInDesk;
+    // audio for SpawnInDesk chapter
+    public AudioClip audioSpawnInDesk;
 
-    // Voice for FirstEnterInCubo chapter
-    public AudioClip voiceFirstEnterInCubo;
+    // Voice for inside cubo instruction
+    public AudioClip voiceInsideCuboInstruction;
+
+    // Audio for FirstEnterInCubo chapter
+    public AudioClip audioFirstEnterInCubo;
+
+    //Voice for Tp instruction
+    public AudioClip voiceTpInstruction;
 
     // Voice for FirstComeBack chapter
     public AudioClip voiceFirstComeBack;
@@ -81,6 +105,32 @@ public class Story : MonoBehaviour
     // Voice for LightTorch chapter
     public AudioClip voiceLightTorch;
 
+    // Voice for MeltEntrance chapter
+    public AudioClip voiceMeltEntrance;
+
+    // Voice for Heated chapter
+    public AudioClip voiceHeated;
+
+    // Voice for GrabCup chapter
+    public AudioClip voiceGrabCup;
+
+    // Voice for TakeIce chapter
+    public AudioClip voiceTakeIce;
+
+    // Voice for MeltIce chapter
+    public AudioClip voiceMeltIce;
+
+    // Voice for PutOutFire chapter
+    public AudioClip voicePutOutFire;
+
+    // Voice for GrabKey chapter
+    public AudioClip voiceGrabKey;
+
+    // Voice for OpenChest chapter
+    public AudioClip voiceOpenChest;
+
+    // Voice for End chapter
+    public AudioClip voiceEnd;
 
 
     // --------------------------------------------------------------------------------------------------------------------------- //
@@ -90,7 +140,10 @@ public class Story : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!storyActivated) return;
+        if (!storyActivated) {
+            playerController.developerMode = true;
+            return;
+        }
 
         // Reset the loop number
         loopChapter = 0;
@@ -116,6 +169,15 @@ public class Story : MonoBehaviour
             case Advancement.BreakWall: ChapBreakWall(); break;
             case Advancement.DistanceGrabTorch: ChapDistanceGrabTorch(); break;
             case Advancement.LightTorch: ChapLightTorch(); break;
+            case Advancement.MeltEntrance: ChapMeltEntrance(); break;
+            case Advancement.Heated: ChapHeated(); break;
+            case Advancement.GrabCup: ChapGrabCup(); break;
+            case Advancement.TakeIce: ChapTakeIce(); break;
+            case Advancement.MeltIce: ChapMeltIce(); break;
+            case Advancement.PutOutFire: ChapPutOutFire(); break;
+            case Advancement.GrabKey: ChapGrabKey(); break;
+            case Advancement.OpenChest: ChapOpenChest(); break;
+            case Advancement.End: ChapEnd(); break;
         }
     }
 
@@ -135,18 +197,25 @@ public class Story : MonoBehaviour
         // What the player can do: look at the map, listen to the voice, grab cubo, move cubo into the box
         // That's all for now, if the player presses the button with cubo in the box, we enter in the next chapter
 
-        audioSource.clip = voiceSpawnInDesk;
-        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+        if ((loopChapter == 0) && dialoguesActivated) {
+            audioSource.clip = audioSpawnInDesk;
             audioSource.Play();
-            time = Time.time;
+            loopChapter++;
+        }
+        
+        if (!audioSource.isPlaying) {
+            audioSource.clip = voiceInsideCuboInstruction;
+            if ((loopChapter == 1 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+                audioSource.Play();
+                time = Time.time;
+            }   
+            // Increase the loop number
+            loopChapter++;
         }
 
         // Block cubo's rotation (except for the y axis)
         smallCubo.transform.rotation = Quaternion.Euler(0, smallCubo.transform.rotation.eulerAngles.y, 0);
-
-        // Increase the loop number
-        loopChapter++;
-    
+         
         // If the player tp in cubo, we enter in the next chapter
         if (playerController.transform.position.x > 10.0f) {
             chapter = Advancement.FirstEnterInCubo;
@@ -162,15 +231,26 @@ public class Story : MonoBehaviour
         // A voice explains the situation: the player has to grab a stick to break the glass
         // According to the map, the stick is on the top island 
         // The player is told he can tp using the VR controllers (pressing A or X + index trigger)
-
-        audioSource.clip = voiceFirstEnterInCubo;
-        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+        
+        if ((loopChapter == 0) && dialoguesActivated) {
+            audioSource.clip = audioFirstEnterInCubo;
             audioSource.Play();
-            time = Time.time;
-        }        
+            loopChapter++;
+        }
+        
+        if (!audioSource.isPlaying) {
+            audioSource.clip = voiceTpInstruction;
+            if ((loopChapter == 1 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+                audioSource.Play();
+                time = Time.time;
+            }   
+            // Increase the loop number
+            loopChapter++;
+        }
 
-        // Increase the loop number
-        loopChapter++;
+        // Block cubo's rotation (except for the y axis)
+        smallCubo.transform.rotation = Quaternion.Euler(0, smallCubo.transform.rotation.eulerAngles.y, 0);
+
 
         // If the player grabs the stick, we enter in the next chapter
         if (stick.GetComponent<ObjectGrabbable>().IsAvailable() == false) {
@@ -180,6 +260,7 @@ public class Story : MonoBehaviour
         }
     }
 
+    
     //------ CHAPTER 3: First come back (learn to come back from cubo) ------//
     void ChapFirstComeBack()
     {
@@ -216,8 +297,8 @@ public class Story : MonoBehaviour
         // The player has to rotate cubo to access the graveyard area
         // Once the graveyard accessed, the next chapter starts
 
-        if (stick.GetComponent<ObjectGrabbable>().IsAvailable() == false) audioSource.clip = voiceFirstRotateCuboForgotStick;
-        else audioSource.clip = voiceFirstRotateCubo;
+        if (loopChapter == 0 && stick.GetComponent<ObjectGrabbable>().IsAvailable()) audioSource.clip = voiceFirstRotateCuboForgotStick;
+        else if (loopChapter == 0) audioSource.clip = voiceFirstRotateCubo;
 
         if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
             audioSource.Play();
@@ -225,7 +306,6 @@ public class Story : MonoBehaviour
         }
         
         // The player can now rotate cubo
-        smallCubo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
         // Increase the loop number
         loopChapter++;
@@ -257,12 +337,11 @@ public class Story : MonoBehaviour
         loopChapter++;
 
         // If the player breaks the wall, we enter in the next chapter (A IMPLEMENTER)
-        // if (wall.GetComponent<WallBehaviour>().IsBroken()) {
-        //     chapter = Advancement.DistanceGrabTorch;
-        //     loopChapter = 0;
-        //     audioSource.Stop();
-
-        // }
+        if (wall.GetComponent<WallBehaviour>().IsDestroyed()) {
+            chapter = Advancement.DistanceGrabTorch;
+            loopChapter = 0;
+            audioSource.Stop();
+        }
     }
 
     //------ CHAPTER 6: Distance grab torch (learn how to distance grab) ------//
@@ -294,6 +373,223 @@ public class Story : MonoBehaviour
     //------ CHAPTER 7: Light torch ------//
     void ChapLightTorch()
     {
-        //Todo
+        // The player just grabbe the torch
+        // A voice explains that the player can light the torch by approaching it to the fire
+        // The player lights the torch and enters in the next chapter
+
+        audioSource.clip = voiceLightTorch;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player lights the torch, we enter in the next chapter
+        if (torch.GetComponent<TorchBehaviour>().isOnFire()) {
+            chapter = Advancement.MeltEntrance;
+            loopChapter = 0;
+            audioSource.Stop();
+        }
+    }
+
+    //------ CHAPTER 8: Melting the entrance ------//
+    void ChapMeltEntrance()
+    {
+        // The player just lit the torch
+        // A voice explains that the player can take back the torch to the desk and melt the ice entrance
+        // The player melts the ice entrance and enters in the next chapter
+
+        audioSource.clip = voiceMeltEntrance;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player melts the ice, we enter in the next chapter
+        if (smallCubo.GetComponent<SmallCuboBehaviour>().getIceIsMelted()) {
+            chapter = Advancement.Heated;
+            loopChapter = 0;
+            audioSource.Stop();
+        }
+
+    }
+
+    //------ CHAPTER 8.5: Cubo is heated ------//
+    void ChapHeated()
+    {
+        // The player just lit the torch
+        // A voice explains that the player can take back the torch to the desk and melt the ice entrance
+        // The player melts the ice entrance and enters in the next chapter
+
+        audioSource.clip = voiceHeated;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player enters in ice, we enter in the next chapter
+        if (playerController.transform.position.x > 10.0f 
+            && smallCubo.GetComponent<SmallCuboBehaviour>().FaceDown() == "Ice") {
+            chapter = Advancement.GrabCup;
+            loopChapter = 0;
+            audioSource.Stop();
+        }
+
+    }
+
+
+    //------ CHAPTER 9: Grabbing the cup ------//
+    void ChapGrabCup()
+    {
+        // The player just melted the ice entrance
+        // A voice explains that there might be something to do with the cup
+        // The player grabs the cup and enters in the next chapter
+
+        audioSource.clip = voiceGrabCup;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player grabs the cup, we enter in the next chapter
+        if (cup.GetComponent<ObjectGrabbable>().IsAvailable() == false) {
+            chapter = Advancement.TakeIce;
+            loopChapter = 0;
+            audioSource.Stop();
+        }
+
+    }
+
+    //------ CHAPTER 10: Taking ice ------//
+    void ChapTakeIce()
+    {
+        // The player grabbed the cup
+        // A voice explains that the player can fill it with something
+        // The player fills the cup with ice and enters in the next chapter
+
+        audioSource.clip = voiceTakeIce;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player takes ice, we enter in the next chapter
+        // if (cup.GetComponent<CupBehaviour>().getIceIsTaken()) {
+        //     chapter = Advancement.MeltIce;
+        //     loopChapter = 0;
+        //     audioSource.Stop();
+        // }
+
+    }
+
+    //------ CHAPTER 11: Melting the ice ------//
+    void ChapMeltIce()
+    {
+        // The player took ice in the cup
+        // A voice explains that the player could also melt the ice to make water
+        // The player melts ice and enters the next chapter
+
+        audioSource.clip = voiceMeltIce;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player melts ice, we enter in the next chapter
+
+    }
+
+    //------ CHAPTER 12: Putting out the fire ------//
+    void ChapPutOutFire()
+    {
+        // The player melted the ice
+        // A voice explains that the player can put out the fire with the water
+        // The player puts out the fire and enters the next chapter
+
+        audioSource.clip = voicePutOutFire;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+            time = Time.time;
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player puts out the fire, we enter in the next chapter
+
+    }
+
+    //------ CHAPTER 13: Grabbing the key ------//
+    void ChapGrabKey()
+    {
+        // The player put out the fire
+        // A voice explains that the player can grab the key
+        // The player grabs the key and enters the next chapter
+
+        audioSource.clip = voiceGrabKey;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player grabs the key, we enter in the next chapter
+
+    }
+
+    //------ CHAPTER 14: Opening the chest ------//
+    void ChapOpenChest()
+    {
+        // The player grabbed the key
+        // A voice explains that the player can open the chest
+        // The player opens the chest and enters the next chapter
+
+        audioSource.clip = voiceOpenChest;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player opens the chest, we enter in the next chapter
+
+    }
+
+    //------ CHAPTER 15: End ------//
+    void ChapEnd()
+    {
+        // The player opened the chest
+        // it is over
+       
+
+        audioSource.clip = voiceEnd;
+        if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            audioSource.Play();
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // If the player opens the chest, we enter in the next chapter
+
     }
 }

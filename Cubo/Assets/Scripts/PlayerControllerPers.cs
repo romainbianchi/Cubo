@@ -20,6 +20,9 @@ public class PlayerControllerPers : MonoBehaviour
 
     // Check if the player is in cubo
     private bool inCubo = false;
+
+    // Devfeloper mode
+    public bool developerMode = false;
     
     public void TpPlayerInCubo()
     {
@@ -107,13 +110,13 @@ public class PlayerControllerPers : MonoBehaviour
         // If cubo is not stable, we want to freeze objects with a rigidbody (only if the object position.x > 3.5f)
         if (!cuboIsStable)
         {
-            // Freeze objects with a rigidbody
-            ObjectGrabbable[] objects = GameObject.FindObjectsOfType<ObjectGrabbable>();
-            foreach (ObjectGrabbable obj in objects)
+            Rigidbody[] objects = FindObjectsOfType<Rigidbody>();
+            foreach (Rigidbody obj in objects)
             {
                 if (obj.transform.position.x > 10.0f)
                 {
-                    obj.GetComponent<Rigidbody>().isKinematic = true;
+                    // Set kinematic to true
+                    obj.isKinematic = true;
                 }
             }
         } 

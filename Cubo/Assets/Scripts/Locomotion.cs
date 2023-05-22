@@ -85,11 +85,13 @@ public class Locomotion : MonoBehaviour
     {
 
         // Check if the player is inside the cube
-        if (!playerPers.isInCubo()) {
-            if( marker_prefab_instanciated != null) Destroy(marker_prefab_instanciated);
-            marker_prefab_instanciated = null;
-            lineRenderer.enabled = false;
-            return;
+        if (playerPers.developerMode == false){
+            if (!playerPers.isInCubo()) {
+                if( marker_prefab_instanciated != null) Destroy(marker_prefab_instanciated);
+                marker_prefab_instanciated = null;
+                lineRenderer.enabled = false;
+                return;
+            }
         }
 
         // Player is teleporting
@@ -239,7 +241,7 @@ public class Locomotion : MonoBehaviour
                     if (not_place_for_player) return;
 
                     // If the layer of the hit point is "sky", return
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Sky")) return;
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Sky or Water")) return;
                     
                     // Set the marker to green
                     lineRenderer.material = GreenlineRendererMaterial;

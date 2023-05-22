@@ -47,6 +47,8 @@ public class DistanceGrabbable : MonoBehaviour
     {
         // Set the availability to false
         available = false;
+        if(GetComponent<ObjectGrabbable>() != null) GetComponent<ObjectGrabbable>().SetAvailable(false);
+        
 
         // Save the hand to which the anchor is attached
         attachedGrabber = grabbedBy;
@@ -75,35 +77,20 @@ public class DistanceGrabbable : MonoBehaviour
 
         // Set the availability to true
         available = true;
+        if(GetComponent<ObjectGrabbable>() != null) GetComponent<ObjectGrabbable>().SetAvailable(true);
 
         // Set the attached grabber to null
         attachedGrabber = null;
 
-        // Set the parent of the anchor to the initial parent
-        transform.SetParent(initialParent);
-
-        // If the object is dropped in the desk scene
-        if (transform.position.x < 3.5f) {
-            
-            // If not important object, then drop it normally
-            if (importantObject == ImportantObject.None) {
-                if (grabbedBy.controllerType == DistanceGrabber.ControllerType.LeftController)
-                {
-                    GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
-                    GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
-                }
-                else if (grabbedBy.controllerType == DistanceGrabber.ControllerType.RightController)
-                {
-                    GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
-                    GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
-                }
-            }
-            // If important object, then drop it in the right place
-            else {
-                transform.position = respawnPosition.position;
-                transform.rotation = respawnPosition.rotation;
-            }
+        // If dropped in desk: set parent to null
+        if (transform.position.x < 10f) {
+            transform.SetParent(null);
         } else {
+            transform.SetParent(initialParent);
+        }
+        
+        // If not important object, then drop it normally
+        if (importantObject == ImportantObject.None || transform.position.x > 10f) {
             if (grabbedBy.controllerType == DistanceGrabber.ControllerType.LeftController)
             {
                 GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
@@ -114,6 +101,9 @@ public class DistanceGrabbable : MonoBehaviour
                 GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
                 GetComponent<Rigidbody>().angularVelocity = -OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
             }
+        } else {
+                transform.position = respawnPosition.position;
+                transform.rotation = respawnPosition.rotation;
         }
     }
 
@@ -133,6 +123,10 @@ public class DistanceGrabbable : MonoBehaviour
             // Set the material as the saved material
             GetComponent<Renderer>().material = originMaterial;
         }
+    }
+    
+    public void SetAvailable(bool state){
+        available = state;
     }
 
 }

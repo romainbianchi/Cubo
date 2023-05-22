@@ -7,7 +7,7 @@ using static OVRSkeleton;
 public class ObjectGrabbable : MonoBehaviour
 {
     // List of imortant objects
-    public enum ImportantObject { None, Stick, Torch, Cup, Key, CuboToBeContinued };
+    public enum ImportantObject { None, SmallCubo, Stick, Torch, Cup, Key, CuboToBeContinued };
     public ImportantObject importantObject = ImportantObject.None;
 
     // If important object is not none, we have to specify the respawn position
@@ -52,6 +52,7 @@ public class ObjectGrabbable : MonoBehaviour
     {
         // Set the availability to false
         available = false;
+        if(GetComponent<DistanceGrabbable>() != null) GetComponent<DistanceGrabbable>().SetAvailable(false);
 
         // Save the hand to which the anchor is attached
         attachedGrabber = grabbedBy;
@@ -78,6 +79,7 @@ public class ObjectGrabbable : MonoBehaviour
 
         // Set the availability to true
         available = true;
+        if(GetComponent<DistanceGrabbable>() != null) GetComponent<DistanceGrabbable>().SetAvailable(true);
 
         // Set the attached grabber to null
         attachedGrabber = null;
@@ -105,5 +107,10 @@ public class ObjectGrabbable : MonoBehaviour
                 transform.position = respawnPosition.position;
                 transform.rotation = respawnPosition.rotation;
         }
+    }
+
+    public void SetAvailable(bool state)
+    {
+        available = state;
     }
 }

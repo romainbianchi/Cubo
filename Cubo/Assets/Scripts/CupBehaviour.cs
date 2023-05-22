@@ -6,11 +6,7 @@ public class CupBehaviour : MonoBehaviour
 {
     // Keep track of all the objects in the cup
     private List<GameObject> objectsInCup = new List<GameObject>();
-
-    // Materials
-    public Material red;
-    public Material green;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,22 +16,31 @@ public class CupBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // change the color of the cup if it is upside down
-        if (isUpsideDown()) {
-            // Color red
-            GetComponent<Renderer>().material = red;
-        } else {
-            // Color green
-            GetComponent<Renderer>().material = green;
-        }
+        foreach (GameObject iceCube in objectsInCup)
+        {
 
+            // if distance between cup and ice cube is greater than 0.1
+            if (Vector3.Distance(iceCube.transform.position, transform.position) > 0.3f)
+            {
+                // remove ice cube from cup
+                objectsInCup.Remove(iceCube);
+                // set initial parent
+                iceCube.GetComponent<IceBehaviour>().setToInitialParent();
+            }
+
+        }
     }
 
     // If an object enters the trigger
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
+
         // If the cup is upside down, do nothing
         if (isUpsideDown()) return;
+
+        if (fullCup()) return;
+        
+        if (objectsInCup.Contains(other.gameObject)) return;
 
         // If the object has the "ice behaviour" script
         if (other.gameObject.GetComponent<IceBehaviour>() == null) return;
@@ -51,7 +56,7 @@ public class CupBehaviour : MonoBehaviour
         iceCube.transform.parent = transform;
 
         // Set the local position of the object to 0
-        iceCube.transform.localPosition = new Vector3(0, 0.1f, 0);
+        iceCube.transform.localPosition = new Vector3(0, 0.04f, 0);
     }
 
     void OnTriggerExit(Collider other)
@@ -79,7 +84,7 @@ public class CupBehaviour : MonoBehaviour
         }
 
         // put back the object in the cup (local position to 0)
-        iceCube.transform.localPosition = new Vector3(0, 0.1f, 0);
+        iceCube.transform.localPosition = new Vector3(0, 0.04f, 0);
     }
 
     
@@ -95,5 +100,10 @@ public class CupBehaviour : MonoBehaviour
         
     }
 
+    private bool fullCup(){
+        // if cup is full return true
+        if (objectsInCup.Count > 3) return true;
+        return false;
+    }
 
 }
