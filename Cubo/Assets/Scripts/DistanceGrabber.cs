@@ -45,9 +45,13 @@ public class DistanceGrabber : MonoBehaviour
     void Update()
     {
         // If the player is not in cubo, return
-        if (!playerPers.isInCubo()) {
-            lineRenderer.enabled = false;
-            return;
+        if (playerPers.developerMode == false){
+            if (!playerPers.isInCubo() 
+                && !((controllerType == ControllerType.LeftController && playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing)
+                || (controllerType == ControllerType.RightController && playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing))) {
+                lineRenderer.enabled = false;
+                return;
+            }
         }
 
         // State check

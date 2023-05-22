@@ -16,6 +16,13 @@ public class SmallCuboBehaviour : MonoBehaviour
     // Box for cubo (to detect if the cubo is in the box or not with a collider)
     public GameObject box;
 
+    // IceBlock
+    public GameObject iceBlock;
+    public GameObject meltedIceBlock;
+    public Collider houseCollider;
+    private bool iceMelted = false;
+    
+
     // Cubo state
     private bool stable = false;
 
@@ -34,6 +41,9 @@ public class SmallCuboBehaviour : MonoBehaviour
         {
             faces[i] = transform.GetChild(i).gameObject;
         } 
+
+        iceBlock.SetActive(true);
+        meltedIceBlock.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,7 +62,7 @@ public class SmallCuboBehaviour : MonoBehaviour
         UpdateCuboState();
         
         // Debug print the current face
-        Debug.Log(FaceDown());
+        // Debug.Log(FaceDown());
     }
 
     void Respawn()
@@ -120,5 +130,17 @@ public class SmallCuboBehaviour : MonoBehaviour
         if(currentFace == null) return null;
 
         return currentFace.name;
+    }
+
+    public void meltIceBlock(){
+        iceBlock.SetActive(false);
+        meltedIceBlock.SetActive(true);
+        houseCollider.enabled = false;
+
+        iceMelted = true;
+    }
+
+    public bool getIceIsMelted(){
+        return iceMelted;
     }
 }
