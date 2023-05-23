@@ -55,6 +55,9 @@ public class Story : MonoBehaviour
     // Stick
     public GameObject stick;
 
+    // Wall area 
+    public GameObject wallArea;
+
     // Wall
     public GameObject wall;
 
@@ -63,6 +66,9 @@ public class Story : MonoBehaviour
 
     // Cup
     public GameObject cup;
+
+    // Cup Area
+    public GameObject cupArea;
 
     // Fire
     public GameObject fire;
@@ -362,7 +368,8 @@ public class Story : MonoBehaviour
         // If the player enters cubo in the gravyard, with the stick, we enter in the next chapter
         if (playerController.transform.position.x > 10.0f 
             && stick.GetComponent<ObjectGrabbable>().IsAvailable() == false
-            && smallCubo.GetComponent<SmallCuboBehaviour>().FaceDown() == "Graveyard") {
+            && smallCubo.GetComponent<SmallCuboBehaviour>().FaceDown() == "Graveyard"
+            && wallArea.GetComponent<DialogTrigger>().isInArea()) {
             chapter = Advancement.BreakWall;
             loopChapter = 0;
             audioSource.Stop();
@@ -491,7 +498,8 @@ public class Story : MonoBehaviour
 
         // If the player enters in ice, we enter in the next chapter
         if (playerController.transform.position.x > 10.0f 
-            && smallCubo.GetComponent<SmallCuboBehaviour>().FaceDown() == "Ice") {
+            && smallCubo.GetComponent<SmallCuboBehaviour>().FaceDown() == "Ice"
+            && cupArea.GetComponent<DialogTrigger>().isInArea()) {
             chapter = Advancement.GrabCup;
             loopChapter = 0;
             audioSource.Stop();

@@ -129,4 +129,5 @@ public class PlayerControllerPers : MonoBehaviour
         // Play a step sound
         GetComponent<AudioSource>().Play();
     }
+
 }

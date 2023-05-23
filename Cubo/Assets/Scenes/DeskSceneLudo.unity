@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12730399, g: 0.13414775, b: 0.121111095, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414726, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2149,9 +2149,11 @@ MonoBehaviour:
   playerController: {fileID: 1858034999}
   smallCubo: {fileID: 1881297517}
   stick: {fileID: 1119366489}
+  wallArea: {fileID: 941687691}
   wall: {fileID: 1485294952}
   torch: {fileID: 1275026011}
   cup: {fileID: 904159324}
+  cupArea: {fileID: 1069092951}
   fire: {fileID: 1118878980}
   key: {fileID: 633807690}
   chest: {fileID: 5720451676614502389}
@@ -3742,6 +3744,7 @@ GameObject:
   - component: {fileID: 941687695}
   - component: {fileID: 941687694}
   - component: {fileID: 941687693}
+  - component: {fileID: 941687697}
   m_Layer: 0
   m_Name: Wall Dialogue Trigger
   m_TagString: Untagged
@@ -3772,7 +3775,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941687691}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.4068952, y: 1.2835982, z: 1.6390249}
@@ -3827,6 +3830,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941687691}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &941687697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941687691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba12fe79892664d378a95d07d430e3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1858034995}
 --- !u!1 &968648902
 GameObject:
   m_ObjectHideFlags: 0
@@ -4023,6 +4039,7 @@ GameObject:
   - component: {fileID: 1069092955}
   - component: {fileID: 1069092954}
   - component: {fileID: 1069092953}
+  - component: {fileID: 1069092956}
   m_Layer: 0
   m_Name: Cup Dialogue Trigger
   m_TagString: Untagged
@@ -4108,6 +4125,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069092951}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1069092956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069092951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba12fe79892664d378a95d07d430e3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1858034995}
 --- !u!1 &1085353502
 GameObject:
   m_ObjectHideFlags: 0
@@ -8900,6 +8930,18 @@ PrefabInstance:
       propertyPath: respawnPosition
       value: 
       objectReference: {fileID: 1404483368}
+    - target: {fileID: 7776752084397713479, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777392942433235367, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777638408242619603, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7911212021343277035, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: centerEyeAnchor
       value: 

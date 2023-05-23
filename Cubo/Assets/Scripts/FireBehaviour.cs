@@ -55,6 +55,9 @@ public class FireBehaviour : MonoBehaviour
                     // Deactivate particles
                     GetComponent<ParticleSystem>().Stop();
 
+                    // disable child 0
+                    other.transform.GetChild(0).gameObject.SetActive(false);
+
                     //deactivate other flames
                     if (flame1 != null)
                     {

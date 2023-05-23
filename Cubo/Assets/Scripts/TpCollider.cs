@@ -23,6 +23,7 @@ public class TpCollider : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // onCollision.Invoke();
+        if (other.GetComponent<Collider>().isTrigger) return;
         locomotion.set_not_place_for_player(true);
     }
 

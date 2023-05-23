@@ -74,7 +74,7 @@ public class CupBehaviour : MonoBehaviour
     }
 
     public bool fullCup(){
-        return objectsInCup.Count >= 3 ;
+        return objectsInCup.Count >= 6 ;
     }
 
     public void meltIce()

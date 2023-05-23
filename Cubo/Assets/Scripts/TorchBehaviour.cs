@@ -14,7 +14,8 @@ public class TorchBehaviour : MonoBehaviour
     void Start()
     {
         flame = transform.GetChild(0).gameObject;
-        flame.SetActive(false);
+        flame.GetComponent<ParticleSystem>().Stop();
+        flame.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,7 +26,8 @@ public class TorchBehaviour : MonoBehaviour
 
     public void setFire(bool fire)
     {
-        flame.SetActive(fire);
+        flame.GetComponent<ParticleSystem>().Play();
+        flame.transform.GetChild(0).gameObject.SetActive(true);
         onFire = fire;
     }
 
