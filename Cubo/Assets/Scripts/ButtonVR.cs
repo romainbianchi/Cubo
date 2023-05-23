@@ -17,8 +17,9 @@ public class ButtonVR : MonoBehaviour
 
     // Fade
     public GameObject centerEyeAnchor;
+    
+    // First time teleporting into the cube
     private float fadeTime;
-    private float fadeTimer = 0;
     
     // check if the player is teleporting
     private bool isTeleporting = false;
@@ -33,38 +34,36 @@ public class ButtonVR : MonoBehaviour
     // Small cubo
     public GameObject smallCubo;
 
+
     // Start is called before the first frame update
     void Start()
     {
         isPressed = false;
 
-        // Set the button material to green
-        button.GetComponent<Renderer>().material = greenButtonMaterial;
 
-        // Get the fade time
-        fadeTime = centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime;
+
     }
 
     void Update()
     {
-        // Button is always green
-        button.GetComponent<Renderer>().material = greenButtonMaterial;
 
-        // If the player is teleporting
-        if(isTeleporting){
-            // start the timer and wait the end of the first fade
-            fadeTimer += Time.deltaTime;
-            if(fadeTimer > fadeTime){
-                // Reset the timer
-                fadeTimer = 0;
-                // Stop teleporting
-                isTeleporting = false;
-                // Fade in 
-                centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
-                // TP the player in cubo
+        if (isTeleporting) {
+            // if OVR is still fading out
+            if (Time.time - fadeTime > centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime) {
+                
+                // TP the player out of cubo
                 onRelease.Invoke();
+
+                // Fade in
+                isTeleporting = false;
+
+                centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
+                
             }
         }
+
+        // Button is always green
+        button.GetComponent<Renderer>().material = greenButtonMaterial;
         
         // Only if the button is the desk button
         if(!(buttonType == ButtonType.DeskButton)) return;
@@ -74,7 +73,6 @@ public class ButtonVR : MonoBehaviour
 
         // Press gets red
         button.GetComponent<Renderer>().material = redButtonMaterial;
-
         
     }
 
@@ -102,11 +100,28 @@ public class ButtonVR : MonoBehaviour
             button.transform.localPosition = new Vector3(0, 0.013f, 0);
             isPressed = false;
 
-            // only if cubo is stable
-            if (!(playerController.getCuboIsStable())) return;
+            // type
+            if (buttonType == ButtonType.DeskButton)
+            {
+                
+                // only if cubo is stable
+                if (!(playerController.getCuboIsStable())) return;
 
-            isTeleporting = true;
-            centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+                // TP the player in cubo
+                onRelease.Invoke();
+
+                
+                centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
+            } else {
+
+                // Fade out
+                centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
+
+                isTeleporting = true;
+
+                fadeTime = Time.time;
+                
+            }
         }
     }
 }

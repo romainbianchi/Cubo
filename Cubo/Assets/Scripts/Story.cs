@@ -32,6 +32,14 @@ public class Story : MonoBehaviour
     // Audio source for dialogues
     private AudioSource audioSource;
 
+    // OVR Screen Fade
+    public GameObject centerEyeAnchor;
+
+    // First time teleporting into the cube
+    public float firstFadeTime = 15f;
+    public float fadeTime = 0.5f;
+    
+
     // --------------------------------------------------------------------------------------------------------------------------- //
     // --------------------------------------------------- INTERCTABLE OBJECTS --------------------------------------------------- //
     // --------------------------------------------------------------------------------------------------------------------------- //
@@ -208,6 +216,8 @@ public class Story : MonoBehaviour
         }
 
         if (audioSource.isPlaying) time = Time.time;
+         
+        centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime = firstFadeTime;
 
         // Block cubo's rotation (except for the y axis)
         smallCubo.transform.rotation = Quaternion.Euler(0, smallCubo.transform.rotation.eulerAngles.y, 0);
@@ -236,6 +246,7 @@ public class Story : MonoBehaviour
         
         if (!audioSource.isPlaying) {
             audioSource.clip = voiceTpInstruction;
+            centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime = fadeTime;
             if ((loopChapter == 1 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
                 audioSource.Play();
             }   
@@ -243,7 +254,9 @@ public class Story : MonoBehaviour
             loopChapter++;
         }
 
+
         if (audioSource.isPlaying) time = Time.time;
+
 
         // Block cubo's rotation (except for the y axis)
         smallCubo.transform.rotation = Quaternion.Euler(0, smallCubo.transform.rotation.eulerAngles.y, 0);
