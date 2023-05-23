@@ -15,6 +15,8 @@ public class WallBehaviour : MonoBehaviour
 
     public PlayerControllerPers playerPers;
 
+    public GameObject backCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +74,9 @@ public class WallBehaviour : MonoBehaviour
 
         // And disable the collider
         GetComponent<Collider>().enabled = false;
+
+        // Destroy the back collider
+        Destroy(backCollider);
 
         // Destroy the wall
         destroyed = true;

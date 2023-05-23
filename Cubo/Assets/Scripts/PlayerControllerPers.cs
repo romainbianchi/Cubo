@@ -35,9 +35,10 @@ public class PlayerControllerPers : MonoBehaviour
 
     public void TpPlayerInDesk()
     {
-        // TP the player in desk
+        // TP the player in desk and align him with the desk
         this.GetComponent<CharacterController>().enabled = false;
         transform.position = inDeskPos.transform.position;
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         this.GetComponent<CharacterController>().enabled = true;
     }
 
@@ -100,14 +101,15 @@ public class PlayerControllerPers : MonoBehaviour
 
 	void Start () 
     { 
-        
+        // Set the direction of the player to be facing the desk
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     }
 
     void Update()
     {
         inCubo = (transform.position.x > 3.5f);
 
-        // If cubo is not stable, we want to freeze objects with a rigidbody (only if the object position.x > 3.5f)
+        // If cubo is not stable, we want to freeze objects with a rigidbody (only if the object position.x > 3.5f, meaning if the player is in the desk)
         if (!cuboIsStable)
         {
             Rigidbody[] objects = FindObjectsOfType<Rigidbody>();
