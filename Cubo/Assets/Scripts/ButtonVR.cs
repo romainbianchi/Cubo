@@ -15,6 +15,14 @@ public class ButtonVR : MonoBehaviour
     GameObject presser;
     bool isPressed;
 
+    // Fade
+    public GameObject centerEyeAnchor;
+    private float fadeTime;
+    private float fadeTimer = 0;
+    
+    // check if the player is teleporting
+    private bool isTeleporting = false;
+
     // Check if player can press the button
     public PlayerControllerPers playerController;
 
@@ -32,21 +40,41 @@ public class ButtonVR : MonoBehaviour
 
         // Set the button material to green
         button.GetComponent<Renderer>().material = greenButtonMaterial;
+
+        // Get the fade time
+        fadeTime = centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime;
     }
 
     void Update()
     {
         // Button is always green
         button.GetComponent<Renderer>().material = greenButtonMaterial;
+
+        // If the player is teleporting
+        if(isTeleporting){
+            // start the timer and wait the end of the first fade
+            fadeTimer += Time.deltaTime;
+            if(fadeTimer > fadeTime){
+                // Reset the timer
+                fadeTimer = 0;
+                // Stop teleporting
+                isTeleporting = false;
+                // Fade in 
+                centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
+                // TP the player in cubo
+                onRelease.Invoke();
+            }
+        }
         
         // Only if the button is the desk button
         if(!(buttonType == ButtonType.DeskButton)) return;
-        
+
         // Only if cubo is not stable
         if(playerController.getCuboIsStable()) return;
 
         // Press gets red
         button.GetComponent<Renderer>().material = redButtonMaterial;
+
         
     }
 
@@ -71,9 +99,10 @@ public class ButtonVR : MonoBehaviour
     {
         if (other.gameObject == presser)
         {
+            centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
             button.transform.localPosition = new Vector3(0, 0.013f, 0);
-            onRelease.Invoke();
             isPressed = false;
+            isTeleporting = true;
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414726, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -929,6 +929,10 @@ PrefabInstance:
       propertyPath: smallCubo
       value: 
       objectReference: {fileID: 1881297517}
+    - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
     - target: {fileID: 4104006746220749793, guid: d5e5bab66a0cbed498b8834a5da5f9ea, type: 3}
       propertyPath: playerController
       value: 
@@ -8851,6 +8855,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e2f44d83259a3c14abd33197677dbc91, type: 2}
     - target: {fileID: 2117569321926862810, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
+    - target: {fileID: 2117569321926862810, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1858034999}
@@ -8859,6 +8867,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1858034999}
     - target: {fileID: 3167199551406326526, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
+    - target: {fileID: 3167199551406326526, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1858034999}
@@ -8866,6 +8878,10 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858034999}
+    - target: {fileID: 4509333830755320250, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
     - target: {fileID: 4509333830755320250, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: playerController
       value: 
@@ -8918,6 +8934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InsideCube
       objectReference: {fileID: 0}
+    - target: {fileID: 7385752372833605732, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
     - target: {fileID: 7385752372833605732, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: playerController
       value: 
@@ -8995,6 +9015,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911212021343277035, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
+    - target: {fileID: 7911212021343277035, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1858034999}
@@ -9002,6 +9026,10 @@ PrefabInstance:
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858034999}
+    - target: {fileID: 8758386449023023476, guid: 04106258d701519418de7e96e72c89f8, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 1207587833}
     - target: {fileID: 8758386449023023476, guid: 04106258d701519418de7e96e72c89f8, type: 3}
       propertyPath: playerController
       value: 
