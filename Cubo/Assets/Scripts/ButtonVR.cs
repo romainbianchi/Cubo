@@ -99,10 +99,14 @@ public class ButtonVR : MonoBehaviour
     {
         if (other.gameObject == presser)
         {
-            centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
             button.transform.localPosition = new Vector3(0, 0.013f, 0);
             isPressed = false;
+
+            // only if cubo is stable
+            if (!(playerController.getCuboIsStable())) return;
+
             isTeleporting = true;
+            centerEyeAnchor.GetComponent<OVRScreenFade>().FadeOut();
         }
     }
 }
