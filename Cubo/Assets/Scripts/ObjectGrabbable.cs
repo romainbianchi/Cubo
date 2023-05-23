@@ -34,17 +34,6 @@ public class ObjectGrabbable : MonoBehaviour
         available = true;
         attachedGrabber = null;
 
-        // Set the layer as "Grabbable" (and the children)
-        gameObject.layer = LayerMask.NameToLayer("Grabbable");
-        foreach (Transform child in transform){
-            child.gameObject.layer = LayerMask.NameToLayer("Grabbable");
-        }
-
-        // Same for the tag
-        gameObject.tag = "Grabbable";
-        foreach (Transform child in transform){
-            child.gameObject.tag = "Grabbable";
-        }
     }
 
     // When the object is grasped: set the anchor as the child of the hand
@@ -57,8 +46,16 @@ public class ObjectGrabbable : MonoBehaviour
         // Save the hand to which the anchor is attached
         attachedGrabber = grabbedBy;
 
-        // Lift the object a little bit
-        transform.position += Vector3.up * 0.03f;
+        // If stick, then set the position of the stick to the hand
+        if (importantObject == ImportantObject.Stick || importantObject == ImportantObject.Torch) {
+            transform.position = grabbedBy.transform.position;
+            transform.rotation = grabbedBy.transform.rotation * Quaternion.Euler(45f, 0f, 0);
+        } else {
+            // Lift the object a little bit
+            transform.position += Vector3.up * 0.03f;
+        }
+
+        
 
         // Set the parent of the anchor to the hand
         transform.SetParent(grabbedBy.transform);
@@ -92,7 +89,7 @@ public class ObjectGrabbable : MonoBehaviour
         }
         
         // If not important object, then drop it normally
-        if (importantObject == ImportantObject.None || transform.position.x > 10f) {
+        if (importantObject == ImportantObject.None || transform.position.x > 10f || importantObject == ImportantObject.SmallCubo) {
             if (grabbedBy.controllerType == Grabber.ControllerType.LeftController)
             {
                 GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
@@ -106,6 +103,8 @@ public class ObjectGrabbable : MonoBehaviour
         } else {
                 transform.position = respawnPosition.position;
                 transform.rotation = respawnPosition.rotation;
+
+                GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

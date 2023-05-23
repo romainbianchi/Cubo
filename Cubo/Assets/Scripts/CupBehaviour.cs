@@ -6,6 +6,9 @@ public class CupBehaviour : MonoBehaviour
 {
     // Keep track of all the objects in the cup
     private List<GameObject> objectsInCup = new List<GameObject>();
+
+    // Full of water
+    private bool water = false;
     
     // Start is called before the first frame update
     void Start()
@@ -16,19 +19,25 @@ public class CupBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject iceCube in objectsInCup)
-        {
-
-            // if distance between cup and ice cube is greater than 0.1
-            if (Vector3.Distance(iceCube.transform.position, transform.position) > 0.3f)
+        if (isUpsideDown()) {
+            // parent
+            foreach (GameObject iceCube in objectsInCup)
             {
-                // remove ice cube from cup
-                objectsInCup.Remove(iceCube);
-                // set initial parent
                 iceCube.GetComponent<IceBehaviour>().setToInitialParent();
+                iceCube.GetComponent<Rigidbody>().isKinematic = false;
             }
+            
+            objectsInCup.Clear();
+        } else foreach (GameObject iceCube in objectsInCup)
+        {
+            // Bound their position to the cup
+            iceCube.transform.position = transform.position + transform.up * 0.02f * ((objectsInCup.IndexOf(iceCube))-2) + transform.right * 0.01f * ((objectsInCup.IndexOf(iceCube))%2);
 
+            // Bound their rotation to the cup
+            iceCube.transform.rotation = transform.rotation;
         }
+
+        Debug.Log(objectsInCup.Count);
     }
 
     // If an object enters the trigger
@@ -38,8 +47,8 @@ public class CupBehaviour : MonoBehaviour
         // If the cup is upside down, do nothing
         if (isUpsideDown()) return;
 
-        if (fullCup()) return;
-        
+        if (fullCup() || water) return;
+
         if (objectsInCup.Contains(other.gameObject)) return;
 
         // If the object has the "ice behaviour" script
@@ -52,58 +61,46 @@ public class CupBehaviour : MonoBehaviour
         // Add the object to the cup
         objectsInCup.Add(iceCube);
 
-        // Set the cup as the parent of the object
+        // set parent
         iceCube.transform.parent = transform;
 
-        // Set the local position of the object to 0
-        iceCube.transform.localPosition = new Vector3(0, 0.04f, 0);
+        // Set kinematic
+        iceCube.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    void OnTriggerExit(Collider other)
+    public bool isUpsideDown()
     {
-        // If the object is in the list 
-        if (!objectsInCup.Contains(other.gameObject)) return;
-        GameObject iceCube = other.gameObject;
-
-        // If the cup is upside down, do nothing
-        if (isUpsideDown()) {
-            objectsInCup.Remove(iceCube);
-            iceCube.GetComponent<IceBehaviour>().setToInitialParent();
-
-            // set speed to 0
-            iceCube.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-            return;
-        }
-
-        // and the object is not manually put out of the cup
-        if (!iceCube.GetComponent<ObjectGrabbable>().IsAvailable()) {
-            objectsInCup.Remove(iceCube);
-            // iceCube.GetComponent<IceBehaviour>().setToInitialParent();
-            return;
-        }
-
-        // put back the object in the cup (local position to 0)
-        iceCube.transform.localPosition = new Vector3(0, 0.04f, 0);
+        return transform.up.y < 0;
     }
 
-    
+    public bool fullCup(){
+        return objectsInCup.Count >= 3 ;
+    }
 
-    private bool isUpsideDown()
+    public void meltIce()
     {
-        // Get the cup up vector
-        Vector3 cupUpVector = transform.up;
-        
-        // If the cup is upside down
-        if (cupUpVector.y < 0) return true;
-        return false;
-        
+        if (water) return;
+        if (objectsInCup.Count < 3) return;
+
+        water = true;
+        GetComponent<MeshRenderer>().enabled = true;
+
+        foreach (GameObject iceCube in objectsInCup)
+        {
+            iceCube.GetComponent<IceBehaviour>().Respawn();
+        }
+        objectsInCup.Clear();
     }
 
-    private bool fullCup(){
-        // if cup is full return true
-        if (objectsInCup.Count > 3) return true;
-        return false;
+    public bool isWater()
+    {
+        return water;
+    }
+
+    public void pourWater()
+    {
+        water = false;
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
 }
