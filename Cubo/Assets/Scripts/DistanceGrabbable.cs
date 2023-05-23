@@ -5,7 +5,7 @@ using UnityEngine;
 public class DistanceGrabbable : MonoBehaviour
 {
     // List of imortant objects
-    public enum ImportantObject { None, Stick, Torch, Cup, Key, CuboToBeContinued };
+    public enum ImportantObject { None, SmallCubo, Stick, Torch, Cup, Key, CuboToBeContinued };
     public ImportantObject importantObject = ImportantObject.None;
 
     // If important object is not none, we have to specify the respawn position
@@ -56,11 +56,17 @@ public class DistanceGrabbable : MonoBehaviour
         // Set the parent of the anchor to the hand
         transform.SetParent(grabbedBy.transform);
 
-        // Offset the position of the anchor to the hit point
-        Vector3 offset = transform.position - hitPoint;
+        // If stick, then set the position of the stick to the hand
+        if (importantObject == ImportantObject.Stick || importantObject == ImportantObject.Torch) {
+            transform.position = grabbedBy.transform.position;
+            transform.rotation = grabbedBy.transform.rotation * Quaternion.Euler(45f, 0f, 0);
+        } else {
+            // Offset the position of the anchor to the hit point
+            Vector3 offset = transform.position - hitPoint;
 
-        // Set position to the hand + forward offset
-        transform.position = grabbedBy.transform.position + offset;
+            // Set position to the hand + forward offset
+            transform.position = grabbedBy.transform.position + offset;
+        }
 
         // Set the object as kinematic
         GetComponent<Rigidbody>().isKinematic = true;
@@ -90,7 +96,7 @@ public class DistanceGrabbable : MonoBehaviour
         }
         
         // If not important object, then drop it normally
-        if (importantObject == ImportantObject.None || transform.position.x > 10f) {
+        if (importantObject == ImportantObject.None || transform.position.x > 10f || importantObject == ImportantObject.SmallCubo) {
             if (grabbedBy.controllerType == DistanceGrabber.ControllerType.LeftController)
             {
                 GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
@@ -104,6 +110,8 @@ public class DistanceGrabbable : MonoBehaviour
         } else {
                 transform.position = respawnPosition.position;
                 transform.rotation = respawnPosition.rotation;
+
+                GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

@@ -13,6 +13,8 @@ public class WallBehaviour : MonoBehaviour
 
     private bool destroyed = false;
 
+    public PlayerControllerPers playerPers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +48,19 @@ public class WallBehaviour : MonoBehaviour
 
         if(other.GetComponent<ObjectGrabbable>().importantObject != ObjectGrabbable.ImportantObject.Stick) return;
         
-        // if velocity is too low return
-        if (other.GetComponent<Rigidbody>().velocity.magnitude < minHitVelocity) return;
+        // left hand is grabbing the stick
+        if (playerPers.getLeftState() == PlayerControllerPers.State.Grabbing || playerPers.getLeftState() == PlayerControllerPers.State.DistanceGrabbing) {
+            // get magnitude of velocity of controllers
+            if (OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch).magnitude < minHitVelocity) {
+                return;
+            }
+        } else if (playerPers.getRightState() == PlayerControllerPers.State.Grabbing || playerPers.getRightState() == PlayerControllerPers.State.DistanceGrabbing) {
+            if (OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch).magnitude < minHitVelocity) {
+                return;
+            }
+        } else {
+            return;
+        }
 
         // Set all the stones rigidbody to dynamic
         foreach (GameObject stone in stones)
