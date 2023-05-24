@@ -23,6 +23,13 @@ public class PlayerControllerPers : MonoBehaviour
 
     // Devfeloper mode
     public bool developerMode = false;
+
+    // OVR fade
+    public GameObject centerEyeAnchor;
+
+    // Loading scene
+    public GameObject cuboLoadingScene;
+    
     
     public void TpPlayerInCubo()
     {
@@ -103,10 +110,22 @@ public class PlayerControllerPers : MonoBehaviour
     { 
         // Set the direction of the player to be facing the desk
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        transform.position = inDeskPos.transform.position;
     }
 
     void Update()
     {
+        if (inLoadingScene)
+        {
+            loadingSceneTimer += Time.deltaTime;
+            if (loadingSceneTimer > 5.0f)
+            {
+                inLoadingScene = false;
+                TpPlayerInCubo();
+                centerEyeAnchor.GetComponent<OVRScreenFade>().FadeIn();
+            }
+        }
+
         inCubo = (transform.position.x > 3.5f);
 
         // If cubo is not stable, we want to freeze objects with a rigidbody (only if the object position.x > 3.5f, meaning if the player is in the desk)
@@ -130,4 +149,22 @@ public class PlayerControllerPers : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
+    private bool inLoadingScene;
+    private float loadingSceneTimer;
+
+    public void tpInLoadingScene()
+    {
+        // TP the player in the loading scene
+        this.GetComponent<CharacterController>().enabled = false;
+        transform.position = cuboLoadingScene.transform.position;
+        this.GetComponent<CharacterController>().enabled = true;
+
+        inLoadingScene = true;
+        loadingSceneTimer = 0.0f;
+    }
+
+    public bool isInLoadingScene()
+    {
+        return inLoadingScene;
+    }
 }

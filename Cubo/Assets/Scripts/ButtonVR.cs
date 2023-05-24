@@ -34,13 +34,13 @@ public class ButtonVR : MonoBehaviour
     // Small cubo
     public GameObject smallCubo;
 
+    // TP in load scene (first time only)
+    private bool loadingTp = true;
 
     // Start is called before the first frame update
     void Start()
     {
         isPressed = false;
-
-
 
     }
 
@@ -92,12 +92,12 @@ public class ButtonVR : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
-    // On trigger exit
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == presser)
         {
             button.transform.localPosition = new Vector3(0, 0.013f, 0);
+            // onRelease.Invoke();
             isPressed = false;
 
             // type
@@ -106,6 +106,13 @@ public class ButtonVR : MonoBehaviour
                 
                 // only if cubo is stable
                 if (!(playerController.getCuboIsStable())) return;
+                
+                if (loadingTp)
+                {
+                    loadingTp = false;
+                    playerController.tpInLoadingScene();
+                    return;
+                }
 
                 // TP the player in cubo
                 onRelease.Invoke();

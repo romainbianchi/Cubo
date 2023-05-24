@@ -17,7 +17,7 @@ public class Story : MonoBehaviour
     public bool dialoguesActivated = false;
 
     // Story chapters
-    private enum Advancement { SpawnInDesk, FirstEnterInCubo, FirstComeBack, ForgotStick, FirstRotateCubo, BreakWall, DistanceGrabTorch, LightTorch, MeltEntrance, Heated, GrabCup, TakeIce, MeltIce, PutOutFire, GrabKey, OpenChest, End}
+    private enum Advancement { SpawnInDesk, LoadingScene, FirstEnterInCubo, FirstComeBack, ForgotStick, FirstRotateCubo, BreakWall, DistanceGrabTorch, LightTorch, MeltEntrance, Heated, GrabCup, TakeIce, MeltIce, PutOutFire, GrabKey, OpenChest, End}
     private Advancement chapter = Advancement.SpawnInDesk;
 
     // Keep track of the loop number in each chapter
@@ -171,6 +171,7 @@ public class Story : MonoBehaviour
         switch (chapter)
         {
             case Advancement.SpawnInDesk: ChapSpawnInDesk(); break;
+            case Advancement.LoadingScene: ChapLoadingScene(); break;
             case Advancement.FirstEnterInCubo: ChapFirstEnterInCubo(); break;
             case Advancement.FirstComeBack: ChapFirstComeBack(); break;
             case Advancement.ForgotStick: ChapForgotStick(); break;
@@ -229,12 +230,35 @@ public class Story : MonoBehaviour
         smallCubo.transform.rotation = Quaternion.Euler(0, smallCubo.transform.rotation.eulerAngles.y, 0);
          
         // If the player tp in cubo, we enter in the next chapter
-        if (playerController.transform.position.x > 10.0f) {
-            chapter = Advancement.FirstEnterInCubo;
+        if (playerController.isInLoadingScene()) {
+            chapter = Advancement.LoadingScene;
             loopChapter = 0;
             audioSource.Stop();
         }
     }
+
+    //------ CHAPTER 1.5: Loading scene (C-U-B-O) ------//
+    void ChapLoadingScene()
+    { 
+        audioSource.clip = audioFirstEnterInCubo;
+        if (loopChapter == 0 && dialoguesActivated) {
+            audioSource.Play();
+        }
+
+        // Increase the loop number
+        loopChapter++;
+
+        // Block cubo's rotation (except for the y axis)
+        smallCubo.transform.rotation = Quaternion.Euler(0, smallCubo.transform.rotation.eulerAngles.y, 0);
+
+        // If the player comes back in the desk, we enter in the next chapter
+        if (!playerController.isInLoadingScene()) {
+            chapter = Advancement.FirstEnterInCubo;
+            loopChapter = 0;
+            time = Time.time;
+        }
+    }
+    
 
     //------ CHAPTER 2: First enter in cubo (learn how to tp) ------//
     void ChapFirstEnterInCubo()
@@ -243,23 +267,16 @@ public class Story : MonoBehaviour
         // A voice explains the situation: the player has to grab a stick to break the glass
         // According to the map, the stick is on the top island 
         // The player is told he can tp using the VR controllers (pressing A or X + index trigger)
-        
-        if ((loopChapter == 0) && dialoguesActivated) {
-            audioSource.clip = audioFirstEnterInCubo;
-            audioSource.Play();
-            loopChapter++;
-        }
-        
-        if (!audioSource.isPlaying) {
+                
+        if (Time.time - time > centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime) {
             audioSource.clip = voiceTpInstruction;
             centerEyeAnchor.GetComponent<OVRScreenFade>().fadeTime = fadeTime;
-            if ((loopChapter == 1 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
+            if ((loopChapter == 0 || Time.time - time > repeatAudioEveryXSeconds) && dialoguesActivated) {
                 audioSource.Play();
             }   
             // Increase the loop number
             loopChapter++;
         }
-
 
         if (audioSource.isPlaying) time = Time.time;
 
